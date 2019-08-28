@@ -1,0 +1,23 @@
+{
+  "name": "ru-data-discord-bot",
+  "version": "1.0.0",
+  "description": "A Discord bot for requesting upcoming rugby match information.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pjithorpe/ru-data-discord-bot.git"
+  },
+  "author": "pjithorpe",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pjithorpe/ru-data-discord-bot/issues"
+  },
+  "homepage": "https://github.com/pjithorpe/ru-data-discord-bot#readme",
+  "dependencies": {
+    "discord.js": "^11.5.1",
+    "eslint": "^6.2.2"
+  }
+}
