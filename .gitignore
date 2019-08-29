@@ -61,4 +61,4 @@ typings/
 .next
 
 # config file with bot token
-.config
+config.js
