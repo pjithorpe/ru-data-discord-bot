@@ -1,3 +1,4 @@
+const config = require('./config');
 const Discord = require('discord.js');
 const client = new Discord.Client();
 
@@ -9,4 +10,4 @@ client.on('message', message => {
     console.log(message.content);
 });
 
-client.login();
+client.login(config.bot_token);
