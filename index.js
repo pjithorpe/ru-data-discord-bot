@@ -14,6 +14,9 @@ for (const file of commandFiles) {
     client.commands.set(command.name, command);
 }
 
+// Cooldowns store
+const cooldowns = new Discord.Collection();
+
 client.once('ready', () => {
     console.log('Ready!');
 });
@@ -26,10 +29,11 @@ client.on('message', message => {
     // Get main command and remove from start of args
     const commandName = args.shift().toLowerCase();
 
-    // If command not found, exit
-    if (!client.commands.has(commandName)) return;
+    // Check for command aliases
+    const command = client.commands.get(commandName) || client.commands.find(c => c.aliases && c.aliases.includes(commandName));
 
-    const command = client.commands.get(commandName);
+    // If command unrecognised, exit
+    if (!command) return;
 
     // Check for missing args
     if(command.args && !args.length) {
@@ -41,6 +45,29 @@ client.on('message', message => {
 
         return message.channel.send(reply);
     }
+
+    // Check for command cooldown
+    if (!cooldowns.has(command.name)) {
+        cooldowns.set(command.name, new Discord.Collection());
+    }
+    // Get cooldown info for this command
+    const now = Date.now();
+    const timestamps = cooldowns.get(command.name);
+    const cooldownDuration = (command.cooldown || 10) * 1000;
+
+    // Make cooldown check
+    if (timestamps.has(message.author.id)) {
+        const expirationTime = timestamps.get(message.author.id) + cooldownDuration;
+
+        if (now < expirationTime) {
+            const timeLeft = (expirationTime - now) / 1000;
+            return message.reply('Please wait ' + timeLeft.toFixed(1) + ' more second(s) before reusing the ' + command.name + ' command.');
+        }
+    }
+
+    // Add author to timestamps, and remove them after cooldown has expired
+    timestamps.set(message.author.id, now);
+    setTimeout(() => timestamps.delete(message.author.id), cooldownDuration);
 
     try {
         command.execute(message, args);

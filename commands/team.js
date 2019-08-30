@@ -1,5 +1,6 @@
 module.exports = {
     name: 'team',
+    aliases: ['teamsheet', 'lineup'],
     description: 'Returns teams for next match.',
     args: true,
     usage: '<team>',

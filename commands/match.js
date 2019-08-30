@@ -2,6 +2,7 @@ const sheet = require('./../sheet');
 
 module.exports = {
     name: 'match',
+    aliases: ['game', 'partido'],
     description: 'Returns next match.',
     args: false,
     // eslint-disable-next-line no-unused-vars
