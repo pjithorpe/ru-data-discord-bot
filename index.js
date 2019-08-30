@@ -4,6 +4,8 @@ const Discord = require('discord.js');
 const config = require('./config');
 
 const client = new Discord.Client();
+
+// Commands store
 client.commands = new Discord.Collection();
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 for (const file of commandFiles) {
@@ -22,13 +24,26 @@ client.on('message', message => {
     // Remove ! and split into args
     const args = message.content.slice(1).split(/ +/);
     // Get main command and remove from start of args
-    const command = args.shift().toLowerCase();
+    const commandName = args.shift().toLowerCase();
 
     // If command not found, exit
-    if (!client.commands.has(command)) return;
+    if (!client.commands.has(commandName)) return;
+
+    const command = client.commands.get(commandName);
+
+    // Check for missing args
+    if(command.args && !args.length) {
+        let reply = 'You didn\'t provide any arguments, ' + message.author + '.';
+
+        if (command.usage) {
+            reply += '\nThe proper usage would be: \'!' + command.name + ' ' + command.usage + '\'';
+        }
+
+        return message.channel.send(reply);
+    }
 
     try {
-        client.commands.get(command).execute(message, args);
+        command.execute(message, args);
     }
     catch (e) {
         console.error(e);
