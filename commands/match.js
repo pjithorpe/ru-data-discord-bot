@@ -9,7 +9,7 @@ module.exports = {
     execute(message, args) {
         sheet()
             .then(
-                result => {
+                (result) => {
                     message.reply(
                         '\n' +
                         'Teams: ' + result[0].home + ' vs ' + result[0].away + '\n' +
@@ -18,7 +18,7 @@ module.exports = {
                         'Channel: ' + result[0].channel
                     );
                 },
-                err => {
+                (err) => {
                     console.log(err);
                 }
             );
