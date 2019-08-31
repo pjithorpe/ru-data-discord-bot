@@ -1,9 +1,18 @@
+const config = require('./../config');
+
 module.exports = {
     name: 'shut-up',
     aliases: ['fuck-off', 'zip-it', 'die'],
     description: 'Temporarily disables the bot.',
     // eslint-disable-next-line no-unused-vars
     execute(message, args) {
+
+        // If not a mod, exit
+        if (!message.member.roles.some(r => r.name === config.settings.admin_role)) {
+            return message.reply('You don\'t have the permission to use that command.');
+        }
+
+        // Default duration 1 minute
         let duration = 60000;
         if(args.length) {
             // Convert minutes to ms
