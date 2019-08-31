@@ -15,14 +15,15 @@ for (const file of commandFiles) {
 }
 
 // Cooldowns store
-const cooldowns = new Discord.Collection();
+client.cooldowns = new Discord.Collection();
 
 client.once('ready', () => {
     console.log('Ready!');
 });
 
+client.silence = false;
 client.on('message', message => {
-    if (!message.content.startsWith('!') || message.author.bot) return;
+    if (client.silence || !message.content.startsWith('!') || message.author.bot) return;
 
     // Remove ! and split into args
     const args = message.content.slice(1).split(/ +/);
@@ -47,12 +48,12 @@ client.on('message', message => {
     }
 
     // Check for command cooldown
-    if (!cooldowns.has(command.name)) {
-        cooldowns.set(command.name, new Discord.Collection());
+    if (!client.cooldowns.has(command.name)) {
+        client.cooldowns.set(command.name, new Discord.Collection());
     }
     // Get cooldown info for this command
     const now = Date.now();
-    const timestamps = cooldowns.get(command.name);
+    const timestamps = client.cooldowns.get(command.name);
     const cooldownDuration = (command.cooldown || 10) * 1000;
 
     // Make cooldown check
