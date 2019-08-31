@@ -1,4 +1,4 @@
-const config = require('./../config');
+const config = require('./../settings');
 
 module.exports = {
     name: 'shut-up',
