@@ -1,5 +1,6 @@
 const sheet = require('./../sheet');
 const settings = require('./../settings');
+const moment = require('moment');
 
 module.exports = {
     name: 'match',
@@ -12,7 +13,7 @@ module.exports = {
         return sheet()
             .then(
                 (result) => {
-                    // Get the first row
+                    // Get the inputted team
                     let team = args[0].toLowerCase();
                     // Check if input is an alias
                     if(team in settings.team_aliases) team = settings.team_aliases[team];
@@ -20,7 +21,7 @@ module.exports = {
 
                     // Find team's next match
                     const resultRow = result.find(r => r.home.toLowerCase() === team || r.away.toLowerCase() === team);
-                    
+
                     if(!resultRow) return message.reply('No match found for team \'' + team + '\'.');
 
                     return message.reply(
