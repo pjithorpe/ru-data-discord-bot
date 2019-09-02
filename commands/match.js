@@ -20,8 +20,16 @@ module.exports = {
                     team = team.replace('_', ' ');
 
                     // Find team's next match
-                    const teamRows = result.filter(r => r.home.toLowerCase() === team || r.away.toLowerCase() === team);
-                    const resultRow = dates.sortMatrixByDate(teamRows, settings.date_column_name, settings.time_column_name)[0];
+                    let teamRows = result.filter(r => r.home.toLowerCase() === team || r.away.toLowerCase() === team);
+                    teamRows = dates.sortMatrixByDate(teamRows, settings.date_column_name, settings.time_column_name);
+
+                    let resultRow = null;
+                    // Get first date that is in the future
+                    for(let i = 0; i < teamRows.length && resultRow == null; i++) {
+                        if(dates.isFutureMoment(dates.parseDateAndTime(teamRows[i].date, teamRows[i].time))) {
+                            resultRow = teamRows[i];
+                        }
+                    }
 
                     if(!resultRow) return message.reply('No match found for team \'' + team + '\'.');
 

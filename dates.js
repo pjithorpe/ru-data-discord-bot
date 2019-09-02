@@ -12,9 +12,14 @@ const dates = {
         return result;
     },
 
-    compareDates(date1, date2) {
-        if (date1.isBefore(date2)) return -1;
-        else if (date1.isAfter(date2)) return 1;
+    isFutureMoment(_moment) {
+        if (_moment.isAfter(moment())) return true;
+        return false;
+    },
+
+    compareDates(moment1, moment2) {
+        if (moment1.isBefore(moment2)) return -1;
+        else if (moment1.isAfter(moment2)) return 1;
         return 0;
     },
 
