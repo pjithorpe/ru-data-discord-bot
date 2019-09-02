@@ -8,7 +8,7 @@ module.exports = {
     execute(message, args) {
 
         // If not a mod, exit
-        if (!message.member.roles.some(r => r.name === config.settings.admin_role)) {
+        if (message.member == null || !message.member.roles.length || !message.member.roles.some(r => r.name === config.settings.admin_role)) {
             return message.reply('You don\'t have the permission to use that command.');
         }
 
