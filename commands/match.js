@@ -1,6 +1,6 @@
 const sheet = require('./../sheet');
 const settings = require('./../settings');
-const moment = require('moment');
+const dates = require('./../dates');
 
 module.exports = {
     name: 'match',
@@ -20,7 +20,8 @@ module.exports = {
                     team = team.replace('_', ' ');
 
                     // Find team's next match
-                    const resultRow = result.find(r => r.home.toLowerCase() === team || r.away.toLowerCase() === team);
+                    const teamRows = result.filter(r => r.home.toLowerCase() === team || r.away.toLowerCase() === team);
+                    const resultRow = dates.sortMatrixByDate(teamRows, settings.date_column_name, settings.time_column_name)[0];
 
                     if(!resultRow) return message.reply('No match found for team \'' + team + '\'.');
 

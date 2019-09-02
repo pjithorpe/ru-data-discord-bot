@@ -2,6 +2,11 @@ const settings = {};
 
 settings.admin_role = '@mods';
 
+settings.date_column_name = 'date';
+settings.time_column_name = 'time';
+settings.date_format = 'DD/MM/YYYY';
+settings.time_format = 'HH:mm';
+
 settings.team_aliases = {
 
     // England
