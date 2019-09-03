@@ -1,6 +1,6 @@
-const sheet = require('./../sheet');
-const settings = require('./../settings');
-const dates = require('./../dates');
+const settings = require('../../settings');
+const sheet = require('../libs/sheet');
+const dates = require('../libs/dates');
 
 module.exports = {
     name: 'next-match',

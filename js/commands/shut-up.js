@@ -1,4 +1,4 @@
-const config = require('./../settings');
+const config = require('../../settings');
 
 module.exports = {
     name: 'shut-up',
@@ -6,7 +6,6 @@ module.exports = {
     description: 'Temporarily disables the bot.',
     // eslint-disable-next-line no-unused-vars
     execute(message, args) {
-
         // If not a mod, exit
         if (message.member == null || !message.member.roles.length || !message.member.roles.some(r => r.name === config.settings.admin_role)) {
             return message.reply('You don\'t have the permission to use that command.');
