@@ -1,6 +1,7 @@
 const settings = require('../../settings');
 const sheet = require('../libs/sheet');
 const dates = require('../libs/dates');
+const messageBuilder = require('../libs/messageBuilder');
 
 module.exports = {
     name: 'match',
@@ -33,13 +34,7 @@ module.exports = {
 
                     if(!resultRow) return message.reply('No match found for team \'' + team + '\'.');
 
-                    return message.reply(
-                        '\n' +
-                        'Teams: ' + resultRow.home + ' vs ' + resultRow.away + '\n' +
-                        'Time: ' + resultRow.date + ' ' + resultRow.time + '\n' +
-                        'Competition: ' + resultRow.competition + '\n' +
-                        'Channel: ' + resultRow.channel
-                    );
+                    return message.reply(messageBuilder(resultRow));
                 },
                 (err) => {
                     console.log(err);
