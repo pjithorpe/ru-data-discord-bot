@@ -9,7 +9,7 @@ module.exports = {
     description: 'Returns next match.',
     args: true,
     usage: '<team>',
-    cooldown: 60,
+    cooldown: 10,
     // eslint-disable-next-line no-unused-vars
     execute(message, args) {
         return sheet()
