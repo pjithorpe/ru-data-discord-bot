@@ -80,4 +80,6 @@ client.on('message', message => {
     return;
 });
 
+client.on('error', console.error);
+
 client.login(config.discord.bot_token);
