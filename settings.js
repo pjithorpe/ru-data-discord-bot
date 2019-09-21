@@ -9,6 +9,11 @@ settings.time_column_name = 'time';
 settings.date_format = 'DD/MM/YYYY';
 settings.time_format = 'HH:mm';
 
+settings.league_aliases = {
+    rugby_world_cup: '4574', world_cup: '4574', rwc: '4574',
+    prem: '4414', premiership: '4414',
+};
+
 settings.team_aliases = {
 
     // England
