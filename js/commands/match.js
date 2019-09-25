@@ -22,13 +22,13 @@ module.exports = {
                     // We first check if the arg is a known competition (if not, assume it's a team)
                     if(arg in settings.competition_aliases) {
                         arg = settings.competition_aliases[arg];
-                        arg = arg.replace('_', ' ');
+                        arg = arg.replace(/_/g, ' ');
                         rows = result.filter(r => r.competition.toLowerCase() === arg);
                     }
                     // Check if input is a team alias
                     else if(arg in settings.team_aliases) {
                         arg = settings.team_aliases[arg];
-                        arg = arg.replace('_', ' ');
+                        arg = arg.replace(/_/g, ' ');
                         rows = result.filter(r => r.home.toLowerCase() === arg || r.away.toLowerCase() === arg);
                     }
 
