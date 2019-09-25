@@ -14,11 +14,34 @@ settings.league_aliases = {
     prem: '4414', premiership: '4414',
 };
 
+// Should include name as listed on Ultimate Rugby
 settings.competition_aliases = {
-    rugby_world_cup: 'rwc_2019',
-    mitre_10: 'mitre_10_cup',
+    rwc_2019: 'rwc_2019', rugby_world_cup: 'rwc_2019', rwc: 'rwc_2019', wc: 'rwc_2019', world_cup: 'rwc_2019',
+    '6_nations': '6_nations', '6_n': '6_nations', '6n': '6_nations', six_nations: '6_nations',
+    trc_2020: 'trc_2020', trc: 'trc_2020', the_rugby_championship: 'trc_2020',
+    rugby_europe: 'rugby_europe', rec: 'rugby_europe',
+    pacific_nations_cup: 'pacific_nations_cup', pnc: 'pacific_nations_cup',
+    u20_championship: 'u20_championship', u20: 'u20_championship', u20wc: 'u20_chamionship',
+    international_friendlies: 'international_friendlies', friendly: 'international_friendlies', international: 'international_friendlies',
+
+    premiership_rugby: 'premiership_rugby', prem: 'premiership_rugby', premiership: 'premiership_rugby', english_prem: 'premiership_rugby', english_premiership: 'premiership_rugby', gallagher: 'premiership_rugby', proper_rugby: 'premiership_rugby',
+    prem_rugby_cup: 'prem_rugby_cup', prc: 'prem_rugby_cup', prem_cup: 'prem_rugby_cup', premiership_rugby_cup: 'prem_rugby_cup', anglo_welsh: 'prem_rugby_cup', awc: 'prem_rugby_cup',
+    championship: 'championship',
+    pro_14: 'pro_14', pro14: 'pro_14', p14: 'pro_14', guinness: 'pro_14', master_race: 'pro_14',
+    top_14: 'top_14', top14: 'top_14', t14: 'top_14',
+    pro_d2: 'pro_d2', prod2: 'pro_d2',
+    mlr: 'mlr', major_league_rugby: 'mlr',
+    champions_cup: 'champions_cup', champions: 'champions_cup', europe: 'champions_cup',
+    challenge_cup: 'challenge_cup', challenge: 'challenge_cup',
+
+    super_rugby: 'super_rugby', sr: 'super_rugby',
+    nrc: 'nrc', national_rugby_championship: 'nrc',
+    mitre_10_cup: 'mitre_10_cup', mitre_10: 'mitre_10_cup', m10c: 'mitre_10_cup', m_10_c: 'mitre_10_cup',
+    currie_cup: 'currie_cup', currie: 'currie_cup', cc: 'currie_cup',
+    'premier_15\'s': 'premier_15\'s',
 };
 
+// No need to include name as listed on Ultimate Rugby
 settings.team_aliases = {
 
     // England
