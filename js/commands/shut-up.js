@@ -4,6 +4,7 @@ module.exports = {
     name: 'shut-up',
     aliases: ['fuck-off', 'zip-it', 'die'],
     description: 'Temporarily disables the bot.',
+    args: false,
     // eslint-disable-next-line no-unused-vars
     execute(message, args) {
         // If not a mod, exit

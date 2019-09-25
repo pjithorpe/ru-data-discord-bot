@@ -7,7 +7,7 @@ module.exports = {
     name: 'next-match',
     aliases: ['next-game', 'match-next', 'game-next'],
     description: 'Return info for next match.',
-    args: false,
+    args: true,
     cooldown: 60,
     // eslint-disable-next-line no-unused-vars
     execute(message, args) {

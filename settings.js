@@ -14,6 +14,11 @@ settings.league_aliases = {
     prem: '4414', premiership: '4414',
 };
 
+settings.competition_aliases = {
+    rugby_world_cup: 'rwc_2019',
+    mitre_10: 'mitre_10_cup',
+};
+
 settings.team_aliases = {
 
     // England

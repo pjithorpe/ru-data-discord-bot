@@ -6,34 +6,44 @@ const messageBuilder = require('../libs/messageBuilder');
 module.exports = {
     name: 'match',
     aliases: ['game', 'partido'],
-    description: 'Returns next match for a given team.',
+    description: 'Returns next match for a given team or competition.',
     args: true,
-    usage: '<team>',
+    usage: '<team|competition>',
     cooldown: 10,
     // eslint-disable-next-line no-unused-vars
     execute(message, args) {
         return sheet()
             .then(
                 (result) => {
-                    // Get the inputted team
-                    let team = args[0].toLowerCase();
-                    // Check if input is an alias
-                    if(team in settings.team_aliases) team = settings.team_aliases[team];
-                    team = team.replace('_', ' ');
+                    // Get the inputted team/comp
+                    let arg = args[0].toLowerCase();
 
-                    // Find team's next match
-                    let teamRows = result.filter(r => r.home.toLowerCase() === team || r.away.toLowerCase() === team);
-                    teamRows = dates.sortMatrixByDate(teamRows, settings.date_column_name, settings.time_column_name);
+                    let rows;
+                    // We first check if the arg is a known competition (if not, assume it's a team)
+                    if(arg in settings.competition_aliases) {
+                        arg = settings.competition_aliases[arg];
+                        arg = arg.replace('_', ' ');
+                        rows = result.filter(r => r.competition.toLowerCase() === arg);
+                    }
+                    // Check if input is a team alias
+                    else if(arg in settings.team_aliases) {
+                        arg = settings.team_aliases[arg];
+                        arg = arg.replace('_', ' ');
+                        rows = result.filter(r => r.home.toLowerCase() === arg || r.away.toLowerCase() === arg);
+                    }
+
+                    // Find team/comp's next match
+                    rows = dates.sortMatrixByDate(rows, settings.date_column_name, settings.time_column_name);
 
                     let resultRow = null;
                     // Get first date that is in the future
-                    for(let i = 0; i < teamRows.length && resultRow == null; i++) {
-                        if(dates.isFutureMoment(dates.parseDateAndTime(teamRows[i].date, teamRows[i].time))) {
-                            resultRow = teamRows[i];
+                    for(let i = 0; i < rows.length && resultRow == null; i++) {
+                        if(dates.isFutureMoment(dates.parseDateAndTime(rows[i].date, rows[i].time))) {
+                            resultRow = rows[i];
                         }
                     }
 
-                    if(!resultRow) return message.reply('No match found for team \'' + team + '\'.');
+                    if(!resultRow) return message.reply('No match found for team/competition \'' + arg + '\'.');
 
                     return message.reply(messageBuilder(resultRow));
                 },
