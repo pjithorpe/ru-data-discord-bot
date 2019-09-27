@@ -7,10 +7,10 @@ const client = new Discord.Client();
 
 // Commands store
 client.commands = new Discord.Collection();
-const commandFiles = fs.readdirSync('./js/commands').filter(file => file.endsWith('.js'));
+const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 for (const file of commandFiles) {
-    delete require.cache[require.resolve('./js/commands/' + file)];
-    const command = require('./js/commands/' + file);
+    delete require.cache[require.resolve('./commands/' + file)];
+    const command = require('./commands/' + file);
     client.commands.set(command.name, command);
 }
 

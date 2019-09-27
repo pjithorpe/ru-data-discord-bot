@@ -1,4 +1,4 @@
-const settings = require('../../settings');
+const settings = require('../settings');
 const sheet = require('../libs/sheet');
 const dates = require('../libs/dates');
 const messageBuilder = require('../libs/messageBuilder');

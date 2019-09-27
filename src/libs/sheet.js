@@ -1,4 +1,4 @@
-const config = require('../../config');
+const config = require('../config');
 const GoogleSpreadsheet = require('google-spreadsheet');
 
 async function sheet() {

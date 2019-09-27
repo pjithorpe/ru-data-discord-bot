@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const settings = require('../../settings');
+const settings = require('../settings');
 const sportsDB = require('../libs/sportsDB');
 
 module.exports = {

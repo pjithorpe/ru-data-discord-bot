@@ -1,5 +1,5 @@
 const moment = require('moment');
-const settings = require('../../settings');
+const settings = require('../settings');
 
 const dates = {
     parseDateAndTime(dateStr, timeStr) {
