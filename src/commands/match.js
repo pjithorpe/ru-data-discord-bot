@@ -5,7 +5,7 @@ const messageBuilder = require('../libs/messageBuilder');
 
 module.exports = {
     name: 'match',
-    aliases: ['game', 'partido'],
+    aliases: ['game', 'partido', 'match-next', 'next-match'],
     description: 'Returns next match,  for a given team or competition.',
     args: false,
     usage: '<team|competition>',
