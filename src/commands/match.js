@@ -6,8 +6,8 @@ const messageBuilder = require('../libs/messageBuilder');
 module.exports = {
     name: 'match',
     aliases: ['game', 'partido'],
-    description: 'Returns next match for a given team or competition.',
-    args: true,
+    description: 'Returns next match,  for a given team or competition.',
+    args: false,
     usage: '<team|competition>',
     cooldown: 10,
     // eslint-disable-next-line no-unused-vars
@@ -15,23 +15,27 @@ module.exports = {
         return sheet()
             .then(
                 (result) => {
-                    // Get the inputted team/comp
-                    let arg = args[0].toLowerCase();
-                    console.log(arg);
+                    let rows = result;
 
-                    let rows;
-                    // We first check if the arg is a known competition
-                    if(arg in settings.competition_aliases) {
-                        arg = settings.competition_aliases[arg];
-                        arg = arg.replace(/_/g, ' ');
-                        rows = result.filter(r => r.competition.toLowerCase() === arg);
-                    }
-                    // If not, assume it's a team
-                    else {
-                        // Check if input is a team alias
-                        if(arg in settings.team_aliases) arg = settings.team_aliases[arg];
-                        arg = arg.replace(/_/g, ' ');
-                        rows = result.filter(r => r.home.toLowerCase() === arg || r.away.toLowerCase() === arg);
+                    // If argument provided, filter on team/comp (otherwise, just get next match)
+                    if (args.length) {
+                        // Get the inputted team/comp
+                        let arg = args[0].toLowerCase();
+                        console.log(arg);
+
+                        // We first check if the arg is a known competition
+                        if(arg in settings.competition_aliases) {
+                            arg = settings.competition_aliases[arg];
+                            arg = arg.replace(/_/g, ' ');
+                            rows = result.filter(r => r.competition.toLowerCase() === arg);
+                        }
+                        // If not, assume it's a team
+                        else {
+                            // Check if input is a team alias
+                            if(arg in settings.team_aliases) arg = settings.team_aliases[arg];
+                            arg = arg.replace(/_/g, ' ');
+                            rows = result.filter(r => r.home.toLowerCase() === arg || r.away.toLowerCase() === arg);
+                        }
                     }
 
                     // Find team/comp's next match
