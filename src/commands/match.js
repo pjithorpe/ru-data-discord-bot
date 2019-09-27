@@ -18,9 +18,10 @@ module.exports = {
                     let rows = result;
 
                     // If argument provided, filter on team/comp (otherwise, just get next match)
+                    let arg;
                     if (args.length) {
                         // Get the inputted team/comp
-                        let arg = args[0].toLowerCase();
+                        arg = args[0].toLowerCase();
                         console.log(arg);
 
                         // We first check if the arg is a known competition
@@ -49,7 +50,7 @@ module.exports = {
                         }
                     }
 
-                    if(!resultRow) return message.reply('No match found for team/competition \'' + arg + '\'.');
+                    if(!resultRow && args.length) return message.reply('No match found for team/competition \'' + arg + '\'.');
 
                     return message.reply(messageBuilder(resultRow));
                 },
