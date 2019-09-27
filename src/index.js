@@ -1,4 +1,5 @@
 const fs = require('fs');
+const path = require('path');
 const Discord = require('discord.js');
 
 const config = require('./config');
@@ -7,7 +8,7 @@ const client = new Discord.Client();
 
 // Commands store
 client.commands = new Discord.Collection();
-const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
+const commandFiles = fs.readdirSync(path.join(__dirname, './commands')).filter(file => file.endsWith('.js'));
 for (const file of commandFiles) {
     delete require.cache[require.resolve('./commands/' + file)];
     const command = require('./commands/' + file);
