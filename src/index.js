@@ -4,26 +4,31 @@ const Discord = require('discord.js');
 
 const config = require('./config');
 
-const client = new Discord.Client();
 
+const client = new Discord.Client();
 // Commands store
 client.commands = new Discord.Collection();
-const commandFiles = fs.readdirSync(path.join(__dirname, './commands')).filter(file => file.endsWith('.js'));
-for (const file of commandFiles) {
-    delete require.cache[require.resolve('./commands/' + file)];
-    const command = require('./commands/' + file);
-    client.commands.set(command.name, command);
-}
-
 // Cooldowns store
 client.cooldowns = new Discord.Collection();
 
-client.once('ready', () => {
-    console.log('Ready!');
-});
 
-client.silence = false;
-client.on('message', message => {
+function fetchCommands(commands, directory) {
+    try {
+        const commandFiles = fs.readdirSync(path.join(__dirname, directory)).filter(file => file.endsWith('.js'));
+
+        for (const file of commandFiles) {
+            delete require.cache[require.resolve(path.join(__dirname, directory, file))];
+            const command = require(path.join(__dirname, directory, file));
+            commands.set(command.name, command);
+        }
+        return commands;
+    }
+    catch (e) {
+        throw new Error('Failed to get command files!\n' + e);
+    }
+}
+
+function handleMessage(message) {
     if (client.silence || !message.content.startsWith('!') || message.author.bot) return;
 
     // Remove ! and split into args
@@ -79,8 +84,27 @@ client.on('message', message => {
         message.reply('Error in executing command.');
     }
     return;
+}
+
+
+client.commands = fetchCommands(client.commands, '/commands');
+
+// Event listeners
+client.once('ready', () => {
+    console.log('Ready!');
+});
+
+client.silence = false;
+client.on('message', message => {
+    handleMessage(message);
 });
 
 client.on('error', console.error);
 
 client.login(config.discord.bot_token);
+
+// Export for testing purposes
+module.exports = {
+    fetchCommands,
+    handleMessage,
+};
