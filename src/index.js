@@ -10,6 +10,8 @@ const client = new Discord.Client();
 client.commands = new Discord.Collection();
 // Cooldowns store
 client.cooldowns = new Discord.Collection();
+// Bot muted toggle
+client.silence = false;
 
 
 function fetchCommands(commands, directory) {
@@ -94,7 +96,6 @@ client.once('ready', () => {
     console.log('Ready!');
 });
 
-client.silence = false;
 client.on('message', message => {
     handleMessage(message);
 });
