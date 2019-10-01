@@ -41,6 +41,7 @@ describe('index', () => {
         });
 
         it('should ignore unrecognised commands', () => {
+            this.timeout(10000);
             client.commands.set(
                 'test',
                 {
@@ -65,6 +66,7 @@ describe('index', () => {
         });
 
         it('should send a usage assistance message when required arguments aren\'t provided', () => {
+            this.timeout(10000);
             client.commands.set(
                 'test2',
                 {
@@ -93,6 +95,7 @@ describe('index', () => {
         });
 
         it('should send an "error" message when a command causes an exception', () => {
+            this.timeout(10000);
             client.commands.set(
                 'test3',
                 {
@@ -120,6 +123,7 @@ describe('index', () => {
         });
 
         it('should send a "please wait" message when a command is used while it\'s on cooldown', function() {
+            this.timeout(10000);
             client.commands.set(
                 'test4',
                 {
