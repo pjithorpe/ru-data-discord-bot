@@ -40,11 +40,6 @@ describe('index', () => {
             return client.login(config.discord.test_bot_token);
         });
 
-        beforeEach(() => {
-            // client.cooldowns = new Discord.Collection();
-            // client.silence = false;
-        });
-
         it('should ignore unrecognised commands', () => {
             client.commands.set(
                 'test',
@@ -110,7 +105,6 @@ describe('index', () => {
             );
 
             // Get specific test channel on dev server
-            client.guilds.find(g => g.id === '613663560870133780');
             return client.guilds.find(g => g.id === '613663560870133780')
                 .channels.find(c => c.id === '616006952308441108')
                 .send('!test3')
@@ -122,6 +116,39 @@ describe('index', () => {
                         .then((replyMsg) => {
                             return replyMsg.content.toLowerCase().should.include('error');
                         });
+                });
+        });
+
+        it('should send a "please wait" message when a command is used while it\'s on cooldown', function() {
+            client.commands.set(
+                'test4',
+                {
+                    name: 'test4',
+                    aliases: ['testing4', 'test_command4'],
+                    description: 'A test command with a 5 second cooldown',
+                    args: false,
+                    cooldown: 5,
+                    execute(message, args) { return message.reply('Responding to test4.'); },
+                }
+            );
+
+            // Get specific test channel on dev server
+            return client.guilds.find(g => g.id === '613663560870133780')
+                .channels.find(c => c.id === '616006952308441108')
+                .send('!test4')
+                .then((message) => {
+                    message.author = new Discord.User();
+                    message.author.id = '1234';
+                    message.author.bot = false;
+                    return index.handleMessage(message)
+                        .then(() => {
+                            return index.handleMessage(message)
+                                .then((replyMsg) => {
+                                    return replyMsg.content.toLowerCase().should.include('please').and.include('wait');
+                                })
+                                .catch(console.error);
+                        })
+                        .catch(console.error);
                 });
         });
     });

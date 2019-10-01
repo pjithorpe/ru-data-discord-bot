@@ -78,13 +78,12 @@ function handleMessage(message) {
     setTimeout(() => timestamps.delete(message.author.id), cooldownDuration);
 
     try {
-        command.execute(message, args);
+        return command.execute(message, args);
     }
     catch (e) {
         console.error(e);
         return message.reply('Error in executing command.');
     }
-    return;
 }
 
 

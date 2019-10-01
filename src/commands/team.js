@@ -6,6 +6,6 @@ module.exports = {
     usage: '<team>',
     // eslint-disable-next-line no-unused-vars
     execute(message, args) {
-        message.reply('Not implemented.');
+        return message.reply('Not implemented.');
     },
 };
