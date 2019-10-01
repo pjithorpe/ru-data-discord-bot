@@ -40,7 +40,11 @@ describe('index', () => {
             return client.login(config.discord.test_bot_token);
         });
 
-        it('should ignore unrecognised commands', () => {
+        after(() => {
+            return client.destroy();
+        });
+
+        it('should ignore unrecognised commands', function() {
             this.timeout(10000);
             client.commands.set(
                 'test',
@@ -65,7 +69,7 @@ describe('index', () => {
                 });
         });
 
-        it('should send a usage assistance message when required arguments aren\'t provided', () => {
+        it('should send a usage assistance message when required arguments aren\'t provided', function() {
             this.timeout(10000);
             client.commands.set(
                 'test2',
@@ -94,7 +98,7 @@ describe('index', () => {
                 });
         });
 
-        it('should send an "error" message when a command causes an exception', () => {
+        it('should send an "error" message when a command causes an exception', function() {
             this.timeout(10000);
             client.commands.set(
                 'test3',
@@ -149,10 +153,8 @@ describe('index', () => {
                             return index.handleMessage(message)
                                 .then((replyMsg) => {
                                     return replyMsg.content.toLowerCase().should.include('please').and.include('wait');
-                                })
-                                .catch(console.error);
-                        })
-                        .catch(console.error);
+                                });
+                        });
                 });
         });
     });

@@ -32,11 +32,11 @@ module.exports = {
         return message.author.send(response, { split: true })
             .then(() => {
                 if (message.channel.type === 'dm') return;
-                message.reply('I\'ve sent you a DM with help info.');
+                return message.reply('I\'ve sent you a DM with help info.');
             })
             .catch((err) => {
                 console.error('Could not send help DM to ' + message.author.tag + '.\n', err);
-                message.reply('I can\'t DM you! Do you have DMs disabled?');
+                return message.reply('I can\'t DM you! Do you have DMs disabled?');
             });
     },
 };
