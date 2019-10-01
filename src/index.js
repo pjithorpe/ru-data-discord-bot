@@ -51,7 +51,6 @@ function handleMessage(message) {
         if (command.usage) {
             reply += '\nThe proper usage would be: \'!' + command.name + ' ' + command.usage + '\'';
         }
-
         return message.channel.send(reply);
     }
 
@@ -83,7 +82,7 @@ function handleMessage(message) {
     }
     catch (e) {
         console.error(e);
-        message.reply('Error in executing command.');
+        return message.reply('Error in executing command.');
     }
     return;
 }
@@ -106,6 +105,7 @@ client.login(config.discord.bot_token);
 
 // Export for testing purposes
 module.exports = {
+    client: client,
     fetchCommands,
     handleMessage,
 };
