@@ -35,12 +35,14 @@ describe('index', () => {
     });
 
     describe('#handleMessage', () => {
-        before(() => {
+        before(function() {
+            this.timeout(10000);
             client = index.client;
             return client.login(config.discord.test_bot_token);
         });
 
-        after(() => {
+        after(function() {
+            this.timeout(10000);
             return client.destroy();
         });
 
