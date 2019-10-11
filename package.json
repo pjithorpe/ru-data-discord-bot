@@ -18,7 +18,7 @@
   "homepage": "https://github.com/pjithorpe/ru-data-discord-bot#readme",
   "dependencies": {
     "discord.js": "^11.5.1",
-    "eslint": "^6.2.2",
+    "eslint": "^6.5.1",
     "google-spreadsheet": "^2.0.7",
     "moment": "^2.24.0",
     "request": "^2.88.0"

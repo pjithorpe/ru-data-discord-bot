@@ -1,11 +1,56 @@
+const settings = require('../settings');
+const sheet = require('../libs/sheet');
+
 module.exports = {
     name: 'team',
     aliases: ['teamsheet', 'lineup'],
-    description: 'Returns teams for next match.',
+    description: 'Returns teams for given team.',
     args: true,
     usage: '<team>',
     // eslint-disable-next-line no-unused-vars
     execute(message, args) {
-        return message.reply('Not implemented.');
+        return sheet.getTeamsheets()
+            .then(
+                (result) => {
+                    const rows = result;
+
+                    // If argument provided, filter on team (otherwise, just get next match)
+                    let arg;
+                    if (args.length) {
+                        // Get the inputted team
+                        arg = args[0].toLowerCase();
+                        console.log(arg);
+
+                        // Check if input is a team alias
+                        if(arg in settings.team_aliases) {
+                            arg = settings.team_aliases[arg];
+                            arg = arg.replace(/_/g, ' ');
+                        }
+                    }
+
+                    const matchIndex = rows.findIndex(r => r.home.toLowerCase().trim() === arg || r.away.toLowerCase().trim() === arg);
+
+                    if (matchIndex === -1 && args.length) return message.reply('No teamsheet found for team \'' + arg + '\'.');
+
+                    // Check if it's the home or away team
+                    let homeOrAway;
+                    if (rows[matchIndex].home.toLowerCase().trim() === arg) {
+                        homeOrAway = 'home';
+                    } else {
+                        homeOrAway = 'away';
+                    }
+                    // Now go through the next 23 rows to collect the teamsheet data
+                    const team = [];
+                    for (let i = 1; i < 24; i++) {
+                        team.push(rows[matchIndex + i][homeOrAway]);
+                    }
+
+                    return message.reply(team.toString());
+                },
+                (err) => {
+                    console.log(err);
+                    return Promise.reject('Sheets API request failed.');
+                }
+            );
     },
 };

@@ -12,7 +12,7 @@ module.exports = {
     cooldown: 10,
     // eslint-disable-next-line no-unused-vars
     execute(message, args) {
-        return sheet()
+        return sheet.getMatches()
             .then(
                 (result) => {
                     let rows = result;
