@@ -1,5 +1,6 @@
 const settings = require('../settings');
 const sheet = require('../libs/sheet');
+const messageBuilder = require('../libs/messageBuilder');
 
 module.exports = {
     name: 'team',
@@ -36,7 +37,8 @@ module.exports = {
                     let homeOrAway;
                     if (rows[matchIndex].home.toLowerCase().trim() === arg) {
                         homeOrAway = 'home';
-                    } else {
+                    }
+                    else {
                         homeOrAway = 'away';
                     }
                     // Now go through the next 23 rows to collect the teamsheet data
@@ -45,7 +47,7 @@ module.exports = {
                         team.push(rows[matchIndex + i][homeOrAway]);
                     }
 
-                    return message.reply(team.toString());
+                    return message.channel.send(messageBuilder.formatTeamsheet(team, true));
                 },
                 (err) => {
                     console.log(err);

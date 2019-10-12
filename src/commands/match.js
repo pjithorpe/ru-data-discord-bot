@@ -52,7 +52,7 @@ module.exports = {
 
                     if(!resultRow && args.length) return message.reply('No match found for team/competition \'' + arg + '\'.');
 
-                    return message.reply(messageBuilder(resultRow));
+                    return message.reply(messageBuilder.formatMatch(resultRow));
                 },
                 (err) => {
                     console.log(err);
