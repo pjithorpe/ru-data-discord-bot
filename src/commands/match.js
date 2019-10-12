@@ -28,14 +28,14 @@ module.exports = {
                         if(arg in settings.competition_aliases) {
                             arg = settings.competition_aliases[arg];
                             arg = arg.replace(/_/g, ' ');
-                            rows = result.filter(r => r.competition.toLowerCase() === arg);
+                            rows = result.filter(r => r.competition.toLowerCase().trim() === arg);
                         }
                         // If not, assume it's a team
                         else {
                             // Check if input is a team alias
                             if(arg in settings.team_aliases) arg = settings.team_aliases[arg];
                             arg = arg.replace(/_/g, ' ');
-                            rows = result.filter(r => r.home.toLowerCase() === arg || r.away.toLowerCase() === arg);
+                            rows = result.filter(r => r.home.toLowerCase().trim() === arg || r.away.toLowerCase().trim() === arg);
                         }
                     }
 

@@ -7,7 +7,7 @@ module.exports = {
     aliases: ['teamsheet', 'lineup'],
     description: 'Returns teams for given team.',
     args: true,
-    usage: '<team>',
+    usage: '<team> <?simple>',
     // eslint-disable-next-line no-unused-vars
     execute(message, args) {
         return sheet.getTeamsheets()
@@ -47,7 +47,9 @@ module.exports = {
                         team.push(rows[matchIndex + i][homeOrAway]);
                     }
 
-                    return message.channel.send(messageBuilder.formatTeamsheet(team, true));
+                    // Format teamsheet as a RichEmbed or just text
+                    if (args.length === 2 && args[1] === 'simple') return message.reply(messageBuilder.formatTeamsheet(team, false));
+                    else return message.channel.send(messageBuilder.formatTeamsheet(team, true));
                 },
                 (err) => {
                     console.log(err);
