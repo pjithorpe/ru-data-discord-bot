@@ -31,8 +31,8 @@ function fetchCommands(commands, directory) {
 }
 
 function handleMessage(message) {
-    if (message.author.id === '118887220235993088') return message.react('🥄');
-    if (message.author.id === '249848729262227457' && message.content.toLowerCase().includes('scot')) return message.react('🇫');
+    if (message.author.id === '118887220235993088') message.react('🥄');
+    if (message.author.id === '249848729262227457' && message.content.toLowerCase().includes('scot')) message.react('🇫');
 
     if (client.silence || !message.content.startsWith('!') || message.author.bot) return;
 
