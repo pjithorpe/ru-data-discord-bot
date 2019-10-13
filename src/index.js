@@ -31,6 +31,8 @@ function fetchCommands(commands, directory) {
 }
 
 function handleMessage(message) {
+    if (message.author.id === '118887220235993088') return message.react('🥄');
+
     if (client.silence || !message.content.startsWith('!') || message.author.bot) return;
 
     // Remove ! and split into args
