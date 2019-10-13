@@ -41,9 +41,14 @@ module.exports = {
                     else {
                         homeOrAway = 'away';
                     }
+
                     // Now go through the next 23 rows to collect the teamsheet data
                     const team = [];
                     for (let i = 1; i < 24; i++) {
+                        // Check there are no players listed or some are missing
+                        if (rows[matchIndex + i].date.trim() !== '') return message.reply('Team not yet announced');
+
+                        // Add player to team array
                         team.push(rows[matchIndex + i][homeOrAway]);
                     }
 
