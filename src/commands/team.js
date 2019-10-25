@@ -23,10 +23,8 @@ module.exports = {
                         console.log(arg);
 
                         // Check if input is a team alias
-                        if(arg in settings.team_aliases) {
-                            arg = settings.team_aliases[arg];
-                            arg = arg.replace(/_/g, ' ');
-                        }
+                        if(arg in settings.team_aliases) arg = settings.team_aliases[arg];
+                        arg = arg.replace(/_/g, ' ');
                     }
 
                     const matchIndex = rows.findIndex(r => r.home.toLowerCase().trim() === arg || r.away.toLowerCase().trim() === arg);
