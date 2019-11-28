@@ -1,4 +1,4 @@
-const settings = {};
+﻿const settings = {};
 
 settings.admin_role = '@mods';
 
@@ -45,28 +45,27 @@ settings.competition_aliases = {
 settings.team_aliases = {
 
     // England
-    bath_rugby: 'bath',
-    bears: 'bristol_bears',
-    exeter_chiefs: 'exeter',
+    bath: 'bath_rugby',
+    bristol: 'bristol_bears', bears: 'bristol_bears',
+    exeter: 'exeter_chiefs',
     quins: 'harlequins',
-    tigers: 'leicester', leicester_tigers: 'leicester',
-    irish: 'london_irish',
-    sale_sharks: 'sale',
-    sarries: 'saracens',
-    worcester_warriors: 'worcester',
-    falcons: 'newcastle', newcastle_falcons: 'newcastle',
-    yorkshire: 'carnegie',
-    cornish_pirates: 'pirates',
-    bedford_blues: 'bedford',
+    tigers: 'leicester_tigers', leicester: 'leicester_tigers',
+    irish: 'london_irish', london_australian: 'london_irish',
+    sale: 'sale_sharks',
+    sarries: 'saracens', cheaters: 'saracens', cheats: 'saracens',
+    worcester: 'worcester_warriors',
+    falcons: 'newcastle_falcons', newcastle: 'newcastle_falcons',
+    yorkshire: 'yorkshire_carnegie',
+    pirates: 'cornish_pirates',
     coventry: 'coventry_rugby',
     jersey: 'jersey_reds',
-    doncaster_knights: 'doncaster',
-    ealing_trailfinders: 'ealing',
-    nottingham_rugby: 'nottingham',
+    doncaster: 'doncaster_knights',
+    ealing: 'ealing_trailfinders',
+    nottingham: 'nottingham_rugby',
     scottish: 'london_scottish',
     welsh: 'london_welsh',
-    hartpury: 'hartpury_college', hcrfc: 'hartpury_college',
-    ampthill_rufc: 'ampthill',
+    hartpury: 'hartpury_college_rfc', hcrfc: 'hartpury_college_rfc',
+    ampthill: 'ampthill_rugby',
 
     // France
     bordeaux: 'union_bordeaux_begles', begles: 'union_bordeaux_begles', bordeaux_begles: 'union_bordeaux_begles',
@@ -84,15 +83,20 @@ settings.team_aliases = {
     ca_brive: 'brive', club_athletique_brive: 'brive',
 
     // Scotland
-    glasgow_warriors: 'glasgow',
+    glasgow: 'glasgow_warriors',
+    edinburgh: 'edinburgh_rugby',
 
     // Ireland
+    ulster: 'ulster_rugby',
+    munster: 'munster_rugby',
+    leinster: 'leinster_rugby',
+    connacht: 'connacht_rugby',
 
     // Wales
     cardiff_blues: 'cardiff',
 
     // Italy
-    benetton: 'treviso', benetton_treviso: 'treviso',
+    treviso: 'benetton_rugby', benetton: 'benetton_rugby', benetton_treviso: 'benetton_rugby',
 
     // New Zealand
     canes: 'hurricanes',
