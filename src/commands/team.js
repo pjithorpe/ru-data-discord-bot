@@ -8,6 +8,7 @@ module.exports = {
     description: 'Returns teams for given team.',
     args: true,
     usage: '<team> <?simple>',
+    enabled: false,
     // eslint-disable-next-line no-unused-vars
     execute(message, args) {
         return sheet.getTeamsheets()

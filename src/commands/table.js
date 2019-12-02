@@ -9,6 +9,7 @@ module.exports = {
     args: true,
     usage: '<tournament>',
     cooldown: 10,
+    enabled: false,
     // eslint-disable-next-line no-unused-vars
     execute(message, args) {
         let leagueID;

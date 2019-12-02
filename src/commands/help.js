@@ -4,6 +4,7 @@ module.exports = {
     description: 'Displays help for interacting with the bot.',
     cooldown: 20,
     args: false,
+    enabled: true,
     // eslint-disable-next-line no-unused-vars
     execute(message, args) {
         const response = [];

@@ -43,7 +43,7 @@ function handleMessage(message) {
     const command = client.commands.get(commandName) || client.commands.find(c => c.aliases && c.aliases.includes(commandName));
 
     // If command unrecognised, exit
-    if (!command) return;
+    if (!command || !command.enabled) return;
 
     // Check for missing args
     if(command.args && !args.length) {

@@ -10,6 +10,7 @@ module.exports = {
     args: false,
     usage: '<team|competition>',
     cooldown: 10,
+    enabled: true,
     // eslint-disable-next-line no-unused-vars
     execute(message, args) {
         return sheet.getMatches()
