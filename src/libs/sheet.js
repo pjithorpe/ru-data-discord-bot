@@ -1,12 +1,12 @@
 const config = require('../config');
 const GoogleSpreadsheet = require('google-spreadsheet');
 
-async function getMatches() {
-    const doc = new GoogleSpreadsheet(config.sheets.spreadsheet_id_matches);
+async function getSheetData(sheetID, worksheetIndex) {
+    const doc = new GoogleSpreadsheet(sheetID);
 
     return new Promise((resolve, reject) => {
         doc.useServiceAccountAuth(config.sheets.credentials, () => {
-            doc.getRows(1, (err, rows) => {
+            doc.getRows(worksheetIndex, (err, rows) => {
                 if (err) {
                     reject(err);
                 }
@@ -16,22 +16,20 @@ async function getMatches() {
     });
 }
 
-async function getTeamsheets() {
-    const doc = new GoogleSpreadsheet(config.sheets.spreadsheet_id_teamsheets);
+async function getMatches() {
+    return getSheetData(config.sheets.spreadsheet_id_matches, 1);
+}
 
-    return new Promise((resolve, reject) => {
-        doc.useServiceAccountAuth(config.sheets.credentials, () => {
-            doc.getRows(1, (err, rows) => {
-                if (err) {
-                    reject(err);
-                }
-                resolve(rows);
-            });
-        });
-    });
+async function getTeamsheets() {
+    return getSheetData(config.sheets.spreadsheet_id_teamsheets, 1);
+}
+
+async function getTable(worksheetID) {
+    return getSheetData(config.sheets.spreadsheet_id_tables, worksheetID);
 }
 
 module.exports = {
     getMatches,
-    getTeamsheets
+    getTeamsheets,
+    getTable,
 };
