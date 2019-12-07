@@ -9,9 +9,17 @@ settings.time_column_name = 'time';
 settings.date_format = 'DD/MM/YYYY';
 settings.time_format = 'HH:mm';
 
-settings.league_aliases = {
-    rugby_world_cup: '4574', world_cup: '4574', rwc: '4574',
-    prem: '4414', premiership: '4414',
+// Keys should be the same as the competition target name in competition_aliases
+settings.competition_table_mapping = {
+    premiership_rugby: [1],
+    top_14: [2],
+    trc_2020: [3],
+    pro_14: [4, 5],
+    champions_cup: [6, 7, 8, 9, 19],
+    challenge_cup: [10, 11, 12, 13, 20],
+    championship: [14],
+    super_rugby: [15, 16, 17],
+    '6_nations': [18],
 };
 
 // Should include name as listed on Ultimate Rugby
@@ -26,7 +34,7 @@ settings.competition_aliases = {
 
     premiership_rugby: 'premiership_rugby', prem: 'premiership_rugby', premiership: 'premiership_rugby', english_prem: 'premiership_rugby', english_premiership: 'premiership_rugby', gallagher: 'premiership_rugby', proper_rugby: 'premiership_rugby',
     prem_rugby_cup: 'prem_rugby_cup', prc: 'prem_rugby_cup', prem_cup: 'prem_rugby_cup', premiership_rugby_cup: 'prem_rugby_cup', anglo_welsh: 'prem_rugby_cup', awc: 'prem_rugby_cup',
-    championship: 'championship',
+    championship: 'championship', english_championship: 'championship',
     pro_14: 'pro_14', pro14: 'pro_14', p14: 'pro_14', guinness: 'pro_14', master_race: 'pro_14',
     top_14: 'top_14', top14: 'top_14', t14: 'top_14',
     pro_d2: 'pro_d2', prod2: 'pro_d2',
