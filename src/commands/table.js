@@ -57,39 +57,53 @@ module.exports = {
                     const rows = result;
 
                     // Create table html from sheet rows
-                    let html =
-                    `<style type="text/css">
-                    .tg  {border-collapse:collapse;border-spacing:0;}
-                    .tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
-                    .tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
-                    .tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
-                    .tg .tg-0lax{text-align:left;vertical-align:top}
-                    </style>
-                    <div>
+                    let html = settings.table_styling +
+                    `<div>
                         <table class="tg" id="capture">
                         <tr>
-                            <th class="tg-0pky">Team</th>
-                            <th class="tg-0pky">Played</th>
-                            <th class="tg-0pky">W</th>
-                            <th class="tg-0pky">D</th>
-                            <th class="tg-0pky">L</th>
-                            <th class="tg-0pky">PD</th>
-                            <th class="tg-0pky">BP</th>
-                            <th class="tg-0pky">Points</th>
-                        </tr>
-                    `;
+                            <th class="tg-0pky" colspan="2">Team</th>
+                            <th class="tg-c3ow">Pld.</th>
+                            <th class="tg-c3ow">W</th>
+                            <th class="tg-c3ow">D</th>
+                            <th class="tg-c3ow">L</th>
+                            <th class="tg-c3ow">PD</th>
+                            <th class="tg-c3ow">BP</th>
+                            <th class="tg-c3ow">Pts.</th>
+                        </tr>`;
 
                     rows.forEach(row => {
-                        html +=
-                        `<tr>
-                            <td class="tg-0pky">` + row.team + `</td>
-                            <td class="tg-0pky">` + row.played + `</td>
-                            <td class="tg-0pky">` + row.w + `</td>
-                            <td class="tg-0pky">` + row.d + `</td>
-                            <td class="tg-0pky">` + row.l + `</td>
-                            <td class="tg-0pky">` + row.pd + `</td>
-                            <td class="tg-0pky">` + row.bp + `</td>
-                            <td class="tg-0pky">` + row.points + `</td>
+                        html += `
+                        <tr>`;
+                        let team = row.team.toLowerCase();
+                        team = team.replace(/ /g, '_');
+                        console.log(team);
+                        if (team in settings.team_aliases) team = settings.team_aliases[team];
+                        // If the team has a logo, add it to the table
+                        if (team in settings.team_logos) {
+                            const logoLocation = settings.team_logos[team];
+                            html += `
+                            <td class="tg-c3ow">
+                                <div class="logo-container">
+                                    <img src="` + logoLocation + `" />
+                                </div>
+                            </td>
+                            <td class="tg-0pky">` + row.team + '</td>';
+                        }
+                        // Otherwise, just spread the team name over both fields
+                        else {
+                            html += `
+                            <td class="tg-0pky" colspan="2">` + row.team + '</td>';
+                        }
+
+                        // Add the rest of the fields
+                        html += `
+                            <td class="tg-c3ow">` + row.played + `</td>
+                            <td class="tg-c3ow">` + row.w + `</td>
+                            <td class="tg-c3ow">` + row.d + `</td>
+                            <td class="tg-c3ow">` + row.l + `</td>
+                            <td class="tg-c3ow">` + row.pd + `</td>
+                            <td class="tg-c3ow">` + row.bp + `</td>
+                            <td class="tg-c3ow">` + row.points + `</td>
                         </tr>
                         `;
                     });

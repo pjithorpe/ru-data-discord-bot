@@ -9,6 +9,50 @@ settings.time_column_name = 'time';
 settings.date_format = 'DD/MM/YYYY';
 settings.time_format = 'HH:mm';
 
+settings.table_styling =
+`<style type="text/css">
+    .tg {
+        border-collapse:collapse;
+        border-spacing:0;
+    }
+    .tg td {
+        font-family:Arial, sans-serif;
+        font-size:14px;
+        padding:10px 5px;
+        border-style:solid;
+        border-width:1px;
+        overflow:hidden;
+        word-break:normal;
+        border-color:black;
+    }
+    .tg th {
+        font-family:Arial, sans-serif;
+        font-size:14px;
+        font-weight:normal;
+        padding:10px 5px;
+        border-style:solid;
+        border-width:1px;
+        overflow:hidden;
+        word-break:normal;
+        border-color:black;
+        border-bottom: 5px solid black;
+    }
+    .tg .tg-c3ow {
+        border-color:inherit;
+        text-align:center;
+        vertical-align:top
+    }
+    .tg .tg-0pky {
+        border-color:inherit;
+        text-align:left;
+        vertical-align:top
+    }
+    .tg img {
+        width: 20px;
+        height: auto;
+    }
+</style>`;
+
 // Keys should be the same as the competition target name in competition_aliases
 settings.competition_table_mapping = {
     premiership_rugby: [1],
@@ -20,6 +64,12 @@ settings.competition_table_mapping = {
     championship: [14],
     super_rugby: [15, 16, 17],
     '6_nations': [18],
+};
+
+// Keys should be the same as the team target name in team_aliases
+settings.team_logos = {
+    leicester_tigers: 'https://i.imgur.com/BAzGajk.png',
+    exeter_chiefs: 'https://i.imgur.com/qITNxNK.png',
 };
 
 // Should include name as listed on Ultimate Rugby
