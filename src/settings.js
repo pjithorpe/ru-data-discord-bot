@@ -39,7 +39,7 @@ settings.competition_aliases = {
     top_14: 'top_14', top14: 'top_14', t14: 'top_14',
     pro_d2: 'pro_d2', prod2: 'pro_d2',
     mlr: 'mlr', major_league_rugby: 'mlr',
-    champions_cup: 'champions_cup', champions: 'champions_cup', europe: 'champions_cup',
+    champions_cup: 'champions_cup', champions: 'champions_cup', europe: 'champions_cup', champs_cup: 'champions_cup',
     challenge_cup: 'challenge_cup', challenge: 'challenge_cup',
 
     super_rugby: 'super_rugby', sr: 'super_rugby',
