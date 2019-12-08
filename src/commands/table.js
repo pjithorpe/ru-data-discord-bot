@@ -16,7 +16,7 @@ module.exports = {
     cooldown: 10,
     enabled: true,
     // eslint-disable-next-line no-unused-vars
-    async execute(message, args) {
+    execute(message, args) {
         let tableID;
         let groupIndex;
         // Get the inputted tournament
@@ -48,11 +48,15 @@ module.exports = {
         if (groupIndex < competitionTableIDs.length) tableID = competitionTableIDs[groupIndex];
         else return message.reply('No table found for group \'' + groupIndex.toString() + '\'.');
 
+        // Table padding
+        const padding = 0;
+        // Get google sheet
         return sheet.getTable(tableID)
             .then(
-                async (result) => {
+                (result) => {
                     const rows = result;
 
+                    // Create table html from sheet rows
                     let html =
                     `<style type="text/css">
                     .tg  {border-collapse:collapse;border-spacing:0;}
@@ -94,23 +98,38 @@ module.exports = {
                     `</table>
                     </div>`;
 
+                    // Create image from html and send to discord
                     return puppeteer.launch().then(browser => {
                         return browser.newPage().then(page => {
                             return page.setContent(html).then(() => {
-                                const imgLocation = path.resolve(__dirname, 'img.png');
-                                return page.screenshot({ path: imgLocation }).then(() => {
-                                    // send table image to channel
-                                    return message.channel.send({
-                                        files: [{
-                                            attachment: imgLocation,
-                                            name: 'img.png',
-                                        }],
-                                    }).then(() => {
-                                        // close temp browser
-                                        return browser.close();
-                                    }).then(() => {
-                                        // delete temporary image file
-                                        return fs.unlink(imgLocation);
+                                return page.evaluate(async () => {
+                                    return page.$('#capture').then(element => {
+                                        return element.boundingBox().then(box => {
+                                            const imgLocation = path.resolve(__dirname, 'img.png');
+                                            return page.screenshot({
+                                                path: imgLocation,
+                                                clip: {
+                                                    x: box.x - padding,
+                                                    y: box.y - padding,
+                                                    width: box.width + padding * 2,
+                                                    height: box.height + padding * 2,
+                                                },
+                                            }).then(() => {
+                                                // send table image to channel
+                                                return message.channel.send({
+                                                    files: [{
+                                                        attachment: imgLocation,
+                                                        name: 'img.png',
+                                                    }],
+                                                }).then(() => {
+                                                    // close temp browser
+                                                    return browser.close().then(() => {
+                                                        // delete temporary image file
+                                                        return fs.unlink(imgLocation);
+                                                    });
+                                                });
+                                            });
+                                        }, err => { console.log(err); });
                                     });
                                 });
                             });
