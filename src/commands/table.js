@@ -73,9 +73,9 @@ module.exports = {
                             <th class="tg-0pky">W</th>
                             <th class="tg-0pky">D</th>
                             <th class="tg-0pky">L</th>
-                            <th class="tg-0lax">PD</th>
-                            <th class="tg-0lax">BP</th>
-                            <th class="tg-0lax">Points</th>
+                            <th class="tg-0pky">PD</th>
+                            <th class="tg-0pky">BP</th>
+                            <th class="tg-0pky">Points</th>
                         </tr>
                     `;
 
@@ -87,9 +87,9 @@ module.exports = {
                             <td class="tg-0pky">` + row.w + `</td>
                             <td class="tg-0pky">` + row.d + `</td>
                             <td class="tg-0pky">` + row.l + `</td>
-                            <td class="tg-0lax">` + row.pd + `</td>
-                            <td class="tg-0lax">` + row.bp + `</td>
-                            <td class="tg-0lax">` + row.points + `</td>
+                            <td class="tg-0pky">` + row.pd + `</td>
+                            <td class="tg-0pky">` + row.bp + `</td>
+                            <td class="tg-0pky">` + row.points + `</td>
                         </tr>
                         `;
                     });
@@ -134,9 +134,6 @@ module.exports = {
                         });
                     });
                 },
-                (err) => {
-                    console.log(err);
-                }
-            );
+                (err) => { console.log(err); });
     },
 };
