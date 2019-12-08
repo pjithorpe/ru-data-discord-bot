@@ -65,8 +65,8 @@ module.exports = {
                     .tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
                     .tg .tg-0lax{text-align:left;vertical-align:top}
                     </style>
-                    <div id="capture">
-                        <table class="tg">
+                    <div>
+                        <table class="tg" id="capture">
                         <tr>
                             <th class="tg-0pky">Team</th>
                             <th class="tg-0pky">Played</th>
@@ -102,35 +102,33 @@ module.exports = {
                     return puppeteer.launch().then(browser => {
                         return browser.newPage().then(page => {
                             return page.setContent(html).then(() => {
-                                return page.evaluate(async () => {
-                                    return page.$('#capture').then(element => {
-                                        return element.boundingBox().then(box => {
-                                            const imgLocation = path.resolve(__dirname, 'img.png');
-                                            return page.screenshot({
-                                                path: imgLocation,
-                                                clip: {
-                                                    x: box.x - padding,
-                                                    y: box.y - padding,
-                                                    width: box.width + padding * 2,
-                                                    height: box.height + padding * 2,
-                                                },
+                                return page.$('#capture').then(element => {
+                                    return element.boundingBox().then(box => {
+                                        const imgLocation = path.resolve(__dirname, 'img.png');
+                                        return page.screenshot({
+                                            path: imgLocation,
+                                            clip: {
+                                                x: box.x - padding,
+                                                y: box.y - padding,
+                                                width: box.width + padding * 2,
+                                                height: box.height + padding * 2,
+                                            },
+                                        }).then(() => {
+                                            // send table image to channel
+                                            return message.channel.send({
+                                                files: [{
+                                                    attachment: imgLocation,
+                                                    name: 'img.png',
+                                                }],
                                             }).then(() => {
-                                                // send table image to channel
-                                                return message.channel.send({
-                                                    files: [{
-                                                        attachment: imgLocation,
-                                                        name: 'img.png',
-                                                    }],
-                                                }).then(() => {
-                                                    // close temp browser
-                                                    return browser.close().then(() => {
-                                                        // delete temporary image file
-                                                        return fs.unlink(imgLocation);
-                                                    });
+                                                // close temp browser
+                                                return browser.close().then(() => {
+                                                    // delete temporary image file
+                                                    fs.unlink(imgLocation, err => { console.log(err); });
                                                 });
                                             });
-                                        }, err => { console.log(err); });
-                                    });
+                                        });
+                                    }, err => { console.log(err); });
                                 });
                             });
                         });
