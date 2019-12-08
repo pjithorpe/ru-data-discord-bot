@@ -1,4 +1,8 @@
+/* eslint-disable max-nested-callbacks */
+const fs = require('fs');
+const path = require('path');
 const Discord = require('discord.js');
+const puppeteer = require('puppeteer');
 const settings = require('../settings');
 const sheet = require('../libs/sheet');
 
@@ -12,7 +16,7 @@ module.exports = {
     cooldown: 10,
     enabled: true,
     // eslint-disable-next-line no-unused-vars
-    execute(message, args) {
+    async execute(message, args) {
         let tableID;
         let groupIndex;
         // Get the inputted tournament
@@ -46,40 +50,72 @@ module.exports = {
 
         return sheet.getTable(tableID)
             .then(
-                (result) => {
+                async (result) => {
                     const rows = result;
 
-                    const tableEmbed = new Discord.RichEmbed()
-                        .setColor('#0099ff')
-                        .setTitle(competition[0].toUpperCase() + competition.substring(1));
+                    let html =
+                    `<style type="text/css">
+                    .tg  {border-collapse:collapse;border-spacing:0;}
+                    .tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+                    .tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+                    .tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+                    .tg .tg-0lax{text-align:left;vertical-align:top}
+                    </style>
+                    <div id="capture">
+                        <table class="tg">
+                        <tr>
+                            <th class="tg-0pky">Team</th>
+                            <th class="tg-0pky">Played</th>
+                            <th class="tg-0pky">W</th>
+                            <th class="tg-0pky">D</th>
+                            <th class="tg-0pky">L</th>
+                            <th class="tg-0lax">PD</th>
+                            <th class="tg-0lax">BP</th>
+                            <th class="tg-0lax">Points</th>
+                        </tr>
+                    `;
 
-                    const fields = [
-                        { name: 'Team', value: '' },
-                        { name: 'Played', value: '' },
-                        { name: 'W', value: '' },
-                        { name: 'D', value: '' },
-                        { name: 'L', value: '' },
-                        { name: 'PD', value: '' },
-                        { name: 'BP', value: '' },
-                        { name: 'Points', value: '' },
-                    ];
-
-                    rows.forEach((row) => {
-                        fields[0].value += row.team + '\n';
-                        fields[1].value += row.played + '\n';
-                        fields[2].value += row.w + '\n';
-                        fields[3].value += row.d + '\n';
-                        fields[4].value += row.l + '\n';
-                        fields[5].value += row.pd + '\n';
-                        fields[6].value += row.bp + '\n';
-                        fields[7].value += row.points + '\n';
+                    rows.forEach(row => {
+                        html +=
+                        `<tr>
+                            <td class="tg-0pky">` + row.team + `</td>
+                            <td class="tg-0pky">` + row.played + `</td>
+                            <td class="tg-0pky">` + row.w + `</td>
+                            <td class="tg-0pky">` + row.d + `</td>
+                            <td class="tg-0pky">` + row.l + `</td>
+                            <td class="tg-0lax">` + row.pd + `</td>
+                            <td class="tg-0lax">` + row.bp + `</td>
+                            <td class="tg-0lax">` + row.points + `</td>
+                        </tr>
+                        `;
                     });
 
-                    fields.forEach((field) => {
-                        tableEmbed.addField(field.name, field.value, true);
-                    });
+                    html +=
+                    `</table>
+                    </div>`;
 
-                    return message.channel.send({ embed: tableEmbed });
+                    return puppeteer.launch().then(browser => {
+                        return browser.newPage().then(page => {
+                            return page.setContent(html).then(() => {
+                                const imgLocation = path.resolve(__dirname, 'img.png');
+                                return page.screenshot({ path: imgLocation }).then(() => {
+                                    // send table image to channel
+                                    return message.channel.send({
+                                        files: [{
+                                            attachment: imgLocation,
+                                            name: 'img.png',
+                                        }],
+                                    }).then(() => {
+                                        // close temp browser
+                                        return browser.close();
+                                    }).then(() => {
+                                        // delete temporary image file
+                                        return fs.unlink(imgLocation);
+                                    });
+                                });
+                            });
+                        });
+                    });
                 },
                 (err) => {
                     console.log(err);
