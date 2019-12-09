@@ -70,6 +70,16 @@ settings.competition_table_mapping = {
 settings.team_logos = {
     leicester_tigers: 'https://i.imgur.com/BAzGajk.png',
     exeter_chiefs: 'https://i.imgur.com/qITNxNK.png',
+    bath_rugby: 'https://i.imgur.com/ryUoUP9.png',
+    bristol_bears: 'https://i.imgur.com/f6CpKVX.png',
+    gloucester_rugby: 'https://i.imgur.com/IpDQSG8.png',
+    harlequins: 'https://i.imgur.com/Sh6rCWE.png',
+    london_irish: 'https://i.imgur.com/ksOjtDJ.png',
+    wasps: 'https://i.imgur.com/nWOHY9n.png',
+    northampton_saints: 'https://i.imgur.com/zwWU288.png',
+    sale_sharks: 'https://i.imgur.com/7MNt3rA.png',
+    saracens: 'https://i.imgur.com/lyO3oqB.png',
+    worcester_warriors: 'https://i.imgur.com/zGsMwZT.png',
 };
 
 // Should include name as listed on Ultimate Rugby
@@ -107,9 +117,11 @@ settings.team_aliases = {
     bristol: 'bristol_bears', bears: 'bristol_bears',
     exeter: 'exeter_chiefs',
     quins: 'harlequins',
+    gloucester: 'gloucester_rugby',
     tigers: 'leicester_tigers', leicester: 'leicester_tigers',
     irish: 'london_irish', london_australian: 'london_irish',
     sale: 'sale_sharks',
+    saints: 'northampton_saints',
     sarries: 'saracens', cheaters: 'saracens', cheats: 'saracens',
     worcester: 'worcester_warriors',
     falcons: 'newcastle_falcons', newcastle: 'newcastle_falcons',
