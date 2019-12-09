@@ -133,6 +133,22 @@ settings.team_logos = {
     ulster_rugby: 'https://i.imgur.com/Y2T6EkB.png',
     zebre_rugby: 'https://i.imgur.com/Mi1SoTy.png',
 
+    // Top 14
+    clermont_auvergne: 'https://i.imgur.com/bf2BGj8.png',
+    lyon: 'https://i.imgur.com/Ys6jEh1.png',
+    montpellier: 'https://i.imgur.com/E2O1oJS.png',
+    la_rochelle: 'https://i.imgur.com/njKyUA1.png',
+    brive: 'https://i.imgur.com/YXL9GLp.png',
+    pau: 'https://i.imgur.com/DIamGFK.png',
+    racing_92: 'https://i.imgur.com/yuDt66h.png',
+    toulouse: 'https://i.imgur.com/AV6Xd0T.png',
+    rc_toulon: 'https://i.imgur.com/VeUwVSj.png',
+    union_bordeaux_begles: 'https://i.imgur.com/QygNLxy.png',
+    castres_olympique: 'https://i.imgur.com/arPI316.png',
+    bayonne: 'https://i.imgur.com/nKuzLjs.png',
+    agen: 'https://i.imgur.com/c0nkwwk.png',
+    stade_francais: 'https://i.imgur.com/VEM4ZHg.png',
+
     // 6 Nations
     france: 'https://i.imgur.com/2kWouwe.png',
     england: 'https://i.imgur.com/bjoe7w5.png',
@@ -171,17 +187,18 @@ settings.team_aliases = {
     ampthill: 'ampthill_rugby',
 
     // France
-    bordeaux: 'union_bordeaux_begles', begles: 'union_bordeaux_begles', bordeaux_begles: 'union_bordeaux_begles',
-    clermont: 'clermont_auvergne', asm: 'clermont_auvergne',
+    bordeaux: 'union_bordeaux_begles', begles: 'union_bordeaux_begles', bordeaux_begles: 'union_bordeaux_begles', union_bordeaux_bègles: 'union_bordeaux_begles', bordeaux_bègles: 'union_bordeaux_begles',
+    clermont: 'clermont_auvergne', asm: 'clermont_auvergne', asm_clermont_auvergne: 'clermont_auvergne',
     lyon_olympique_universitaire: 'lyon', lou: 'lyon',
     aviron_bayonnais: 'bayonne',
     toulon: 'rc_toulon', rc_toulonnais: 'rc_toulon',
     castres: 'castres_olympique',
     section_paloise: 'pau',
+    montpellier_rugby: 'montpellier',
     su_agen: 'agen',
     stade_rochelais: 'la_rochelle', rochelle: 'la_rochelle',
     stade_toulousain: 'toulouse',
-    stade_français: 'stade_francais', stade_francais_paris: 'stade_francais', sf: 'stade_francais',
+    stade_français: 'stade_francais', stade_français_paris: 'stade_francais', stade_francais_paris: 'stade_francais', sf: 'stade_francais',
     racing: 'racing_92', r92: 'racing_92', r_92: 'racing_92',
     ca_brive: 'brive', club_athletique_brive: 'brive',
 
