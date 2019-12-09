@@ -58,7 +58,7 @@ module.exports = {
                 (err) => {
                     console.log(err);
                     return Promise.reject('Sheets API request failed.');
-                }
+                },
             );
     },
 };
