@@ -1,4 +1,5 @@
-﻿const settings = {};
+﻿/* eslint-disable spaced-comment */
+const settings = {};
 
 settings.admin_role = '@mods';
 
@@ -24,6 +25,7 @@ settings.table_styling =
         overflow:hidden;
         word-break:normal;
         border-color:black;
+        vertical-align:middle;
     }
     .tg th {
         font-family:Arial, sans-serif;
@@ -40,18 +42,20 @@ settings.table_styling =
     .tg .tg-c3ow {
         border-color:inherit;
         text-align:center;
-        vertical-align:top
     }
     .tg .tg-0pky {
         border-color:inherit;
         text-align:left;
-        vertical-align:top
     }
     .tg img {
         width: 20px;
         height: auto;
     }
 </style>`;
+
+/*******************
+    COMPETITIONS
+*******************/
 
 // Keys should be the same as the competition target name in competition_aliases
 settings.competition_table_mapping = {
@@ -64,22 +68,6 @@ settings.competition_table_mapping = {
     championship: [14],
     super_rugby: [15, 16, 17],
     '6_nations': [18],
-};
-
-// Keys should be the same as the team target name in team_aliases
-settings.team_logos = {
-    leicester_tigers: 'https://i.imgur.com/BAzGajk.png',
-    exeter_chiefs: 'https://i.imgur.com/qITNxNK.png',
-    bath_rugby: 'https://i.imgur.com/ryUoUP9.png',
-    bristol_bears: 'https://i.imgur.com/f6CpKVX.png',
-    gloucester_rugby: 'https://i.imgur.com/IpDQSG8.png',
-    harlequins: 'https://i.imgur.com/Sh6rCWE.png',
-    london_irish: 'https://i.imgur.com/ksOjtDJ.png',
-    wasps: 'https://i.imgur.com/nWOHY9n.png',
-    northampton_saints: 'https://i.imgur.com/zwWU288.png',
-    sale_sharks: 'https://i.imgur.com/7MNt3rA.png',
-    saracens: 'https://i.imgur.com/lyO3oqB.png',
-    worcester_warriors: 'https://i.imgur.com/zGsMwZT.png',
 };
 
 // Should include name as listed on Ultimate Rugby
@@ -107,6 +95,43 @@ settings.competition_aliases = {
     mitre_10_cup: 'mitre_10_cup', mitre_10: 'mitre_10_cup', m10c: 'mitre_10_cup', m_10_c: 'mitre_10_cup',
     currie_cup: 'currie_cup', currie: 'currie_cup', cc: 'currie_cup',
     'premier_15\'s': 'premier_15\'s',
+};
+
+/************
+    TEAMS
+************/
+
+// Keys should be the same as the team target name in team_aliases
+settings.team_logos = {
+    // Premiership
+    leicester_tigers: 'https://i.imgur.com/BAzGajk.png',
+    exeter_chiefs: 'https://i.imgur.com/qITNxNK.png',
+    bath_rugby: 'https://i.imgur.com/ryUoUP9.png',
+    bristol_bears: 'https://i.imgur.com/f6CpKVX.png',
+    gloucester_rugby: 'https://i.imgur.com/IpDQSG8.png',
+    harlequins: 'https://i.imgur.com/Sh6rCWE.png',
+    london_irish: 'https://i.imgur.com/ksOjtDJ.png',
+    wasps: 'https://i.imgur.com/nWOHY9n.png',
+    northampton_saints: 'https://i.imgur.com/zwWU288.png',
+    sale_sharks: 'https://i.imgur.com/7MNt3rA.png',
+    saracens: 'https://i.imgur.com/lyO3oqB.png',
+    worcester_warriors: 'https://i.imgur.com/zGsMwZT.png',
+
+    // Pro 14
+    cheetahs: 'https://i.imgur.com/n3LQ3fZ.png',
+    ospreys: 'https://i.imgur.com/T1fvxaH.png',
+    benetton_rugby: 'https://i.imgur.com/rSSB2DO.png',
+    cardiff_blues: 'https://i.imgur.com/9naUL8A.png',
+    connacht_rugby: 'https://i.imgur.com/IoEjulm.png',
+    southern_kings: 'https://i.imgur.com/LdHwrzF.png',
+    edinburgh_rugby: 'https://i.imgur.com/A2ijRnL.png',
+    glasgow_warriors: 'https://i.imgur.com/dKl3FSq.png',
+    leinster_rugby: 'https://i.imgur.com/um3Df4y.png',
+    scarlets: 'https://i.imgur.com/B1QMbXY.png',
+    munster_rugby: 'https://i.imgur.com/n2Sl1xF.png',
+    dragons: 'https://i.imgur.com/CJJmniG.png',
+    ulster_rugby: 'https://i.imgur.com/Y2T6EkB.png',
+    zebre_rugby: 'https://i.imgur.com/Mi1SoTy.png',
 };
 
 // No need to include name as listed on Ultimate Rugby
@@ -163,16 +188,22 @@ settings.team_aliases = {
     connacht: 'connacht_rugby',
 
     // Wales
-    cardiff_blues: 'cardiff',
+    llanelli_scarlets: 'scarlets',
+    newport_gwent_dragons: 'dragons',
+    neath_swansea_ospreys: 'ospreys',
+    cardiff: 'cardiff_blues',
 
     // Italy
     treviso: 'benetton_rugby', benetton: 'benetton_rugby', benetton_treviso: 'benetton_rugby',
+    zebre: 'zebre_rugby',
 
     // New Zealand
     canes: 'hurricanes',
     saders: 'crusaders',
 
     // South Africa
+    toyota_cheetahs: 'cheetahs',
+    kings: 'southern_kings',
 
     // Australia
     tahs: 'waratahs',
