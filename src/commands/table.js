@@ -76,7 +76,6 @@ module.exports = {
                         <tr>`;
                         let team = row.team.toLowerCase();
                         team = team.replace(/ /g, '_');
-                        console.log(team);
                         if (team in settings.team_aliases) team = settings.team_aliases[team];
                         // If the team has a logo, add it to the table
                         if (team in settings.team_logos) {
