@@ -23,7 +23,12 @@
     overflow:hidden;
     word-break:normal;
     border-color:black;
-    border-bottom: 5px solid black;
+    border-bottom: 5px solid;
+}
+.tg .tg-v5nu {
+    border-color:inherit;
+    border-right: 2px solid gray;
+    text-align: center;
 }
 .tg .tg-c3ow {
     border-color:inherit;

@@ -66,6 +66,7 @@ module.exports = {
                         <div>
                             <table class="tg" id="capture">
                             <tr>
+                                <th class="tg-v5nu"></th>
                                 <th class="tg-0pky" colspan="2">Team</th>
                                 <th class="tg-c3ow">Pld.</th>
                                 <th class="tg-c3ow">W</th>
@@ -76,9 +77,11 @@ module.exports = {
                                 <th class="tg-c3ow">Pts.</th>
                             </tr>`;
 
-                    rows.forEach(row => {
+                    rows.forEach((row, index) => {
+                        // Add first column - the table positions
                         html += `
-                            <tr>`;
+                            <tr>
+                                <td class="tg-v5nu">` + (index + 1).toString() + '</td>';
                         let team = row.team.toLowerCase();
                         team = team.replace(/ /g, '_');
                         if (team in settings.team_aliases) team = settings.team_aliases[team];
