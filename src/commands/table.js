@@ -57,23 +57,24 @@ module.exports = {
                     const rows = result;
 
                     // Create table html from sheet rows
-                    let html = settings.table_styling +
-                    `<div>
-                        <table class="tg" id="capture">
-                        <tr>
-                            <th class="tg-0pky" colspan="2">Team</th>
-                            <th class="tg-c3ow">Pld.</th>
-                            <th class="tg-c3ow">W</th>
-                            <th class="tg-c3ow">D</th>
-                            <th class="tg-c3ow">L</th>
-                            <th class="tg-c3ow">PD</th>
-                            <th class="tg-c3ow">BP</th>
-                            <th class="tg-c3ow">Pts.</th>
-                        </tr>`;
+                    let html = settings.table_page_header + settings.table_styling +
+                    `<body>
+                        <div>
+                            <table class="tg" id="capture">
+                            <tr>
+                                <th class="tg-0pky" colspan="2">Team</th>
+                                <th class="tg-c3ow">Pld.</th>
+                                <th class="tg-c3ow">W</th>
+                                <th class="tg-c3ow">D</th>
+                                <th class="tg-c3ow">L</th>
+                                <th class="tg-c3ow">PD</th>
+                                <th class="tg-c3ow">BP</th>
+                                <th class="tg-c3ow">Pts.</th>
+                            </tr>`;
 
                     rows.forEach(row => {
                         html += `
-                        <tr>`;
+                            <tr>`;
                         let team = row.team.toLowerCase();
                         team = team.replace(/ /g, '_');
                         if (team in settings.team_aliases) team = settings.team_aliases[team];
@@ -81,68 +82,79 @@ module.exports = {
                         if (team in settings.team_logos) {
                             const logoLocation = settings.team_logos[team];
                             html += `
-                            <td class="tg-c3ow">
-                                <div class="logo-container">
-                                    <img src="` + logoLocation + `" />
-                                </div>
-                            </td>
-                            <td class="tg-0pky">` + row.team + '</td>';
+                                <td class="tg-c3ow">
+                                    <div class="logo-container">
+                                        <img class="logo-img" src="` + logoLocation + `" />
+                                    </div>
+                                </td>
+                                <td class="tg-0pky">` + row.team + '</td>';
                         }
                         // Otherwise, just spread the team name over both fields
                         else {
                             html += `
-                            <td class="tg-0pky" colspan="2">` + row.team + '</td>';
+                                <td class="tg-0pky" colspan="2">` + row.team + '</td>';
                         }
 
                         // Add the rest of the fields
                         html += `
-                            <td class="tg-c3ow">` + row.played + `</td>
-                            <td class="tg-c3ow">` + row.w + `</td>
-                            <td class="tg-c3ow">` + row.d + `</td>
-                            <td class="tg-c3ow">` + row.l + `</td>
-                            <td class="tg-c3ow">` + row.pd + `</td>
-                            <td class="tg-c3ow">` + row.bp + `</td>
-                            <td class="tg-c3ow">` + row.points + `</td>
-                        </tr>
+                                <td class="tg-c3ow">` + row.played + `</td>
+                                <td class="tg-c3ow">` + row.w + `</td>
+                                <td class="tg-c3ow">` + row.d + `</td>
+                                <td class="tg-c3ow">` + row.l + `</td>
+                                <td class="tg-c3ow">` + row.pd + `</td>
+                                <td class="tg-c3ow">` + row.bp + `</td>
+                                <td class="tg-c3ow">` + row.points + `</td>
+                            </tr>
                         `;
                     });
 
                     html +=
-                    `</table>
-                    </div>`;
+                        `</table>
+                        </div>`;
+
+                    html += `
+                    </body>`;
 
                     // Create image from html and send to discord
                     return puppeteer.launch().then(browser => {
                         return browser.newPage().then(page => {
                             return page.setContent(html).then(() => {
-                                return page.$('#capture').then(element => {
-                                    return element.boundingBox().then(box => {
-                                        const imgLocation = path.resolve(__dirname, 'img.png');
-                                        return page.screenshot({
-                                            path: imgLocation,
-                                            clip: {
-                                                x: box.x - padding,
-                                                y: box.y - padding,
-                                                width: box.width + padding * 2,
-                                                height: box.height + padding * 2,
-                                            },
-                                        }).then(() => {
-                                            // send table image to channel
-                                            return message.channel.send({
-                                                files: [{
-                                                    attachment: imgLocation,
-                                                    name: 'img.png',
-                                                }],
+                                // Run javascript for resizing logos
+                                return page.evaluate(`
+                                    $(".logo-img").each(function(i, img) {
+                                        if (img.width > img.height) $(img).addClass('wide-img');
+                                        else $(img).addClass('tall-img');
+                                    });`,
+                                ).then(() => {
+                                    return page.$('#capture').then(element => {
+                                        return element.boundingBox().then(box => {
+                                            const imgLocation = path.resolve(__dirname, 'img.png');
+                                            return page.screenshot({
+                                                path: imgLocation,
+                                                clip: {
+                                                    x: box.x - padding,
+                                                    y: box.y - padding,
+                                                    width: box.width + padding * 2,
+                                                    height: box.height + padding * 2,
+                                                },
                                             }).then(() => {
-                                                // close temp browser
-                                                return browser.close().then(() => {
-                                                    // delete temporary image file
-                                                    fs.unlink(imgLocation, err => { console.log(err); });
+                                                // send table image to channel
+                                                return message.channel.send({
+                                                    files: [{
+                                                        attachment: imgLocation,
+                                                        name: 'img.png',
+                                                    }],
+                                                }).then(() => {
+                                                    // close temp browser
+                                                    return browser.close().then(() => {
+                                                        // delete temporary image file
+                                                        fs.unlink(imgLocation, err => { console.log(err); });
+                                                    });
                                                 });
                                             });
-                                        });
-                                    }, err => { console.log(err); });
-                                });
+                                        }, err => { console.log(err); });
+                                    });
+                                }, err => { console.log(err); });
                             });
                         });
                     });

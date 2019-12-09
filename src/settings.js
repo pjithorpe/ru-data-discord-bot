@@ -10,6 +10,11 @@ settings.time_column_name = 'time';
 settings.date_format = 'DD/MM/YYYY';
 settings.time_format = 'HH:mm';
 
+settings.table_page_header =
+`<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+`;
+
 settings.table_styling =
 `<style type="text/css">
     .tg {
@@ -47,11 +52,16 @@ settings.table_styling =
         border-color:inherit;
         text-align:left;
     }
-    .tg img {
+    .wide-img {
         width: 20px;
         height: auto;
     }
-</style>`;
+    .tall-img {
+        height: 20px;
+        width: auto;
+    }
+</style>
+</head>`;
 
 /*******************
     COMPETITIONS
