@@ -132,6 +132,14 @@ settings.team_logos = {
     dragons: 'https://i.imgur.com/CJJmniG.png',
     ulster_rugby: 'https://i.imgur.com/Y2T6EkB.png',
     zebre_rugby: 'https://i.imgur.com/Mi1SoTy.png',
+
+    // 6 Nations
+    france: 'https://i.imgur.com/2kWouwe.png',
+    england: 'https://i.imgur.com/bjoe7w5.png',
+    ireland: 'https://i.imgur.com/zeretko.png',
+    italy: 'https://i.imgur.com/P0CuRW8.png',
+    scotland: 'https://i.imgur.com/jeU7svS.png',
+    wales: 'https://i.imgur.com/oE4BLXl.png',
 };
 
 // No need to include name as listed on Ultimate Rugby
