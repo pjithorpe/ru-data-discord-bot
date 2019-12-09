@@ -10,59 +10,6 @@ settings.time_column_name = 'time';
 settings.date_format = 'DD/MM/YYYY';
 settings.time_format = 'HH:mm';
 
-settings.table_page_header =
-`<head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-`;
-
-settings.table_styling =
-`<style type="text/css">
-    .tg {
-        border-collapse:collapse;
-        border-spacing:0;
-    }
-    .tg td {
-        font-family:Arial, sans-serif;
-        font-size:14px;
-        padding:10px 5px;
-        border-style:solid;
-        border-width:1px;
-        overflow:hidden;
-        word-break:normal;
-        border-color:black;
-        vertical-align:middle;
-    }
-    .tg th {
-        font-family:Arial, sans-serif;
-        font-size:14px;
-        font-weight:normal;
-        padding:10px 5px;
-        border-style:solid;
-        border-width:1px;
-        overflow:hidden;
-        word-break:normal;
-        border-color:black;
-        border-bottom: 5px solid black;
-    }
-    .tg .tg-c3ow {
-        border-color:inherit;
-        text-align:center;
-    }
-    .tg .tg-0pky {
-        border-color:inherit;
-        text-align:left;
-    }
-    .wide-img {
-        width: 20px;
-        height: auto;
-    }
-    .tall-img {
-        height: 20px;
-        width: auto;
-    }
-</style>
-</head>`;
-
 /*******************
     COMPETITIONS
 *******************/

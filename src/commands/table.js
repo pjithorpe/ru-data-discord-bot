@@ -5,6 +5,7 @@ const Discord = require('discord.js');
 const puppeteer = require('puppeteer');
 const settings = require('../settings');
 const sheet = require('../libs/sheet');
+const resizeLogos = require('../table_scripts/resizeLogos');
 
 
 module.exports = {
@@ -57,8 +58,11 @@ module.exports = {
                     const rows = result;
 
                     // Create table html from sheet rows
-                    let html = settings.table_page_header + settings.table_styling +
-                    `<body>
+                    let html = `
+                    <head>
+                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+                    </head>
+                    <body>
                         <div>
                             <table class="tg" id="capture">
                             <tr>
@@ -110,51 +114,47 @@ module.exports = {
 
                     html +=
                         `</table>
-                        </div>`;
-
-                    html += `
+                        </div>
                     </body>`;
 
                     // Create image from html and send to discord
                     return puppeteer.launch().then(browser => {
                         return browser.newPage().then(page => {
                             return page.setContent(html).then(() => {
-                                // Run javascript for resizing logos
-                                return page.evaluate(`
-                                    $(".logo-img").each(function(i, img) {
-                                        if (img.width > img.height) $(img).addClass('wide-img');
-                                        else $(img).addClass('tall-img');
-                                    });`,
-                                ).then(() => {
-                                    return page.$('#capture').then(element => {
-                                        return element.boundingBox().then(box => {
-                                            const imgLocation = path.resolve(__dirname, 'img.png');
-                                            return page.screenshot({
-                                                path: imgLocation,
-                                                clip: {
-                                                    x: box.x - padding,
-                                                    y: box.y - padding,
-                                                    width: box.width + padding * 2,
-                                                    height: box.height + padding * 2,
-                                                },
-                                            }).then(() => {
-                                                // send table image to channel
-                                                return message.channel.send({
-                                                    files: [{
-                                                        attachment: imgLocation,
-                                                        name: 'img.png',
-                                                    }],
+                                // Apply styling
+                                return page.addStyleTag({ path: 'src/table_scripts/table.css' }).then(() => {
+                                    // Run javascript for resizing logos
+                                    return page.evaluate(resizeLogos).then(() => {
+                                        return page.$('#capture').then(element => {
+                                            return element.boundingBox().then(box => {
+                                                const imgLocation = path.resolve(__dirname, 'img.png');
+                                                return page.screenshot({
+                                                    path: imgLocation,
+                                                    clip: {
+                                                        x: box.x - padding,
+                                                        y: box.y - padding,
+                                                        width: box.width + padding * 2,
+                                                        height: box.height + padding * 2,
+                                                    },
                                                 }).then(() => {
-                                                    // close temp browser
-                                                    return browser.close().then(() => {
-                                                        // delete temporary image file
-                                                        fs.unlink(imgLocation, err => { console.log(err); });
+                                                    // send table image to channel
+                                                    return message.channel.send({
+                                                        files: [{
+                                                            attachment: imgLocation,
+                                                            name: 'img.png',
+                                                        }],
+                                                    }).then(() => {
+                                                        // close temp browser
+                                                        return browser.close().then(() => {
+                                                            // delete temporary image file
+                                                            fs.unlink(imgLocation, err => { console.log(err); });
+                                                        });
                                                     });
                                                 });
-                                            });
-                                        }, err => { console.log(err); });
-                                    });
-                                }, err => { console.log(err); });
+                                            }, err => { console.log(err); });
+                                        });
+                                    }, err => { console.log(err); });
+                                });
                             });
                         });
                     });
