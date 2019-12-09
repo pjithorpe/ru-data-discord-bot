@@ -122,7 +122,7 @@ module.exports = {
                     </body>`;
 
                     // Create image from html and send to discord
-                    return puppeteer.launch().then(browser => {
+                    return puppeteer.launch({ defaultViewport: { width: 800, height: 800 } }).then(browser => {
                         return browser.newPage().then(page => {
                             return page.setContent(html).then(() => {
                                 // Apply styling
