@@ -124,7 +124,7 @@ module.exports = {
                     // Create image from html and send to discord
                     return puppeteer.launch({ defaultViewport: { width: 800, height: 800 } }).then(browser => {
                         return browser.newPage().then(page => {
-                            return page.setContent(html).then(() => {
+                            return page.setContent(html, { waitUntil: 'load', timeout: 0 }).then(() => {
                                 // Apply styling
                                 return page.addStyleTag({ path: 'src/table_scripts/table.css' }).then(() => {
                                     // Run javascript for resizing logos
