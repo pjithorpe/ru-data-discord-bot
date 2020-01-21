@@ -25,6 +25,7 @@ settings.competition_table_mapping = {
     championship: [14],
     super_rugby: [15, 16, 17],
     '6_nations': [18],
+    rwc_2019: [21, 22, 23, 24],
 };
 
 // Should include name as listed on Ultimate Rugby
