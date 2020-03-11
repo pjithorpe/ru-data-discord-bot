@@ -28,6 +28,7 @@ settings.competition_pool_count = {
     championship: 1,
     super_rugby: 3,
     '6_nations': 1,
+    rwc_2019: 4,
 };
 
 settings.competition_table_names = {
@@ -40,6 +41,7 @@ settings.competition_table_names = {
     championship: 'the-english-championship/table',
     super_rugby: 'super-rugby/table',
     '6_nations': 'six-nations/table',
+    rwc_2019: 'world-cup/table',
 };
 
 // Should include name as listed on Ultimate Rugby
