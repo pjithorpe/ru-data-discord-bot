@@ -30,8 +30,8 @@ module.exports = {
         // Get the group number (if inputted), otherwise default to the first group
         if (args.length === 2 && args[1].length === 1) {
             const groupArg = args[1].toLowerCase();
-            if (groupArg === '1' || groupArg === 'a' || groupArg === 'n') groupIndex = 0;
-            else if (groupArg === '2' || groupArg === 'b' || groupArg === 's') groupIndex = 1;
+            if (groupArg === '1' || groupArg === 'a' || groupArg === 's') groupIndex = 0;
+            else if (groupArg === '2' || groupArg === 'b' || groupArg === 'n') groupIndex = 1;
             else if (groupArg === '3' || groupArg === 'c') groupIndex = 2;
             else if (groupArg === '4' || groupArg === 'd') groupIndex = 3;
             else if (groupArg === '5' || groupArg === 'e') groupIndex = 4;
