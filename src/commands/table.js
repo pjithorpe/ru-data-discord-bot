@@ -50,14 +50,20 @@ module.exports = {
         const url = settings.tables_url + settings.competition_table_names[competition];
         const regex = /data-reactid="(.*?)"/;
 
-        // Create image from html and send to discord
-        return puppeteer.launch({ defaultViewport: { width: 600, height: 1200 } }).then(browser => {
+        console.log(url);
+
+        // Take screenshot of table and send to discord
+        return puppeteer.launch({ defaultViewport: { width: 600, height: 2000 } }).then(browser => {
             return browser.newPage().then(page => {
                 return page.goto(url, { waitUntil: 'load', timeout: 0 }).then(() => {
+                    // eslint-disable-next-line no-undef
                     return page.evaluate(() => document.body.innerHTML).then(body => {
 
+                        // regex search for the constantly changing react id
                         const match = body.match(regex)[0].trim();
                         const idClass = match.substring(14, match.length - 1);
+
+                        // select the table using the react component id
                         const dataReactID = idClass + '.2.0.0.0.0.$' + groupIndex.toString();
 
                         return page.$('[data-reactid=\'' + dataReactID + '\']').then(element => {
@@ -86,11 +92,11 @@ module.exports = {
                                         });
                                     });
                                 });
-                            }, err => { console.log(err); });
+                            });
                         });
                     });
                 });
             });
-        });
+        }, err => { console.log(err); });
     },
 };
