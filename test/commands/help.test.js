@@ -27,7 +27,7 @@ describe('help', () => {
                     usage: 'arg1',
                     cooldown: 0,
                     execute(message, args) {},
-                }
+                },
             );
             client.commands.set(
                 'test2',
@@ -37,7 +37,7 @@ describe('help', () => {
                     description: 'A test command',
                     args: false,
                     execute(message, args) {},
-                }
+                },
             );
             return client.login(config.discord.test_bot_token);
         });
