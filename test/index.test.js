@@ -56,7 +56,7 @@ describe('index', () => {
                     description: 'A test command',
                     args: false,
                     execute(message, args) {},
-                }
+                },
             );
 
             // Get specific test channel on dev server
@@ -82,7 +82,7 @@ describe('index', () => {
                     args: true,
                     usage: 'arg1',
                     execute(message, args) {},
-                }
+                },
             );
 
             // Get specific test channel on dev server
@@ -110,7 +110,7 @@ describe('index', () => {
                     description: 'A test command that throws an error',
                     args: false,
                     execute(message, args) { throw new Error(); },
-                }
+                },
             );
 
             // Get specific test channel on dev server
@@ -139,7 +139,7 @@ describe('index', () => {
                     args: false,
                     cooldown: 5,
                     execute(message, args) { return message.reply('Responding to test4.'); },
-                }
+                },
             );
 
             // Get specific test channel on dev server
