@@ -10,21 +10,36 @@ settings.time_column_name = 'time';
 settings.date_format = 'DD/MM/YYYY';
 settings.time_format = 'HH:mm';
 
+settings.table_padding = 0;
+settings.tables_url = 'https://www.bbc.co.uk/sport/rugby-union/';
+
 /*******************
     COMPETITIONS
 *******************/
 
 // Keys should be the same as the competition target name in competition_aliases
-settings.competition_table_mapping = {
-    premiership_rugby: [1],
-    top_14: [2],
-    trc_2020: [3],
-    pro_14: [4, 5],
-    champions_cup: [6, 7, 8, 9, 19],
-    challenge_cup: [10, 11, 12, 13, 20],
-    championship: [14],
-    super_rugby: [15, 16, 17],
-    '6_nations': [18],
+settings.competition_pool_count = {
+    premiership_rugby: 1,
+    top_14: 1,
+    trc_2020: 1,
+    pro_14: 2,
+    champions_cup: 5,
+    challenge_cup: 5,
+    championship: 1,
+    super_rugby: 3,
+    '6_nations': 1,
+};
+
+settings.competition_table_names = {
+    premiership_rugby: 'english-premiership/table',
+    top_14: 'top-14/table',
+    trc_2020: 'rugby-championship/table',
+    pro_14: 'pro-tournament/table',
+    champions_cup: 'european-cup/table',
+    challenge_cup: 'european-challenge-cup/table',
+    championship: 'the-english-championship/table',
+    super_rugby: 'super-rugby/table',
+    '6_nations': 'six-nations/table',
 };
 
 // Should include name as listed on Ultimate Rugby
