@@ -29,6 +29,9 @@ settings.competition_pool_count = {
     super_rugby: 3,
     '6_nations': 1,
     rwc_2019: 4,
+    english_nat_1: 1,
+    english_nat_2: 2,
+
 };
 
 settings.competition_table_names = {
@@ -42,6 +45,8 @@ settings.competition_table_names = {
     super_rugby: 'super-rugby/table',
     '6_nations': 'six-nations/table',
     rwc_2019: 'world-cup/table',
+    english_nat_1: 'english-national-league-one/table',
+    english_nat_2: 'english-national-league-two/table',
 };
 
 // Should include name as listed on Ultimate Rugby
@@ -69,6 +74,10 @@ settings.competition_aliases = {
     mitre_10_cup: 'mitre_10_cup', mitre_10: 'mitre_10_cup', m10c: 'mitre_10_cup', m_10_c: 'mitre_10_cup',
     currie_cup: 'currie_cup', currie: 'currie_cup', cc: 'currie_cup',
     'premier_15\'s': 'premier_15\'s',
+
+    //for competition tables (not checked UR name for these leagues)
+    nat_1: 'english_nat_1', national_1: 'english_nat_1', nat1: 'english_nat_1', n1: 'english_nat_1',
+    nat_2: 'english_nat_2', national_2: 'english_nat_2', nat2: 'english_nat_2', n2: 'english_nat_2',
 };
 
 /************

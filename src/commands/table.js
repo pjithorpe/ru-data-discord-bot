@@ -30,8 +30,8 @@ module.exports = {
         // Get the group number (if inputted), otherwise default to the first group
         if (args.length === 2 && args[1].length === 1) {
             const groupArg = args[1].toLowerCase();
-            if (groupArg === '1' || groupArg === 'a') groupIndex = 0;
-            else if (groupArg === '2' || groupArg === 'b') groupIndex = 1;
+            if (groupArg === '1' || groupArg === 'a' || groupArg === 'n') groupIndex = 0;
+            else if (groupArg === '2' || groupArg === 'b' || groupArg === 's') groupIndex = 1;
             else if (groupArg === '3' || groupArg === 'c') groupIndex = 2;
             else if (groupArg === '4' || groupArg === 'd') groupIndex = 3;
             else if (groupArg === '5' || groupArg === 'e') groupIndex = 4;
@@ -49,8 +49,6 @@ module.exports = {
         const padding = settings.table_padding;
         const url = settings.tables_url + settings.competition_table_names[competition];
         const regex = /data-reactid="(.*?)"/;
-
-        console.log(url);
 
         // Take screenshot of table and send to discord
         return puppeteer.launch({ defaultViewport: { width: 600, height: 2000 } }).then(browser => {
@@ -89,14 +87,14 @@ module.exports = {
                                         return browser.close().then(() => {
                                             // delete temporary image file
                                             fs.unlink(imgLocation, err => { console.log(err); });
-                                        });
-                                    });
-                                });
-                            });
-                        });
-                    });
-                });
-            });
+                                        }, err => { console.log(err); });
+                                    }, err => { console.log(err); });
+                                }, err => { console.log(err); });
+                            }, err => { console.log(err); });
+                        }, err => { console.log(err); });
+                    }, err => { console.log(err); });
+                }, err => { console.log(err); });
+            }, err => { console.log(err); });
         }, err => { console.log(err); });
     },
 };
