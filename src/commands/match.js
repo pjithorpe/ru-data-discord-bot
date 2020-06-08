@@ -53,6 +53,8 @@ module.exports = {
 
                     if(!resultRow && args.length) return message.reply('No match found for team/competition \'' + arg + '\'.');
 
+                    if(!resultRow) return message.reply('No matches found!');
+
                     return message.reply(messageBuilder.formatMatch(resultRow));
                 },
                 (err) => {
