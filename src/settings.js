@@ -27,6 +27,8 @@ settings.competition_pool_count = {
     challenge_cup: 5,
     championship: 1,
     super_rugby: 3,
+    sr_aotearoa: 1,
+    sr_australia: 1,
     '6_nations': 1,
     rwc_2019: 4,
     english_nat_1: 1,
@@ -43,6 +45,8 @@ settings.competition_table_names = {
     challenge_cup: 'european-challenge-cup/table',
     championship: 'the-english-championship/table',
     super_rugby: 'super-rugby/table',
+    sr_aotearoa: 'super-rugby-nz/table',
+    sr_australia: 'super-rugby-au/table',
     '6_nations': 'six-nations/table',
     rwc_2019: 'world-cup/table',
     english_nat_1: 'english-national-league-one/table',
@@ -74,6 +78,8 @@ settings.competition_aliases = {
     mitre_10_cup: 'mitre_10_cup', mitre_10: 'mitre_10_cup', m10c: 'mitre_10_cup', m_10_c: 'mitre_10_cup',
     currie_cup: 'currie_cup', currie: 'currie_cup', cc: 'currie_cup',
     'premier_15\'s': 'premier_15\'s',
+    sr_aotearoa: 'sr_aotearoa', sr_nz: 'sr_aotearoa', givemesomedamnruggers:'sr_aotearoa', shrugbybestrugby:'sr_aotearoa',
+    sr_australia: 'sr_australia', sr_au: 'sr_australia', sr_folau: 'sr_australia',
 
     //for competition tables (not checked UR name for these leagues)
     nat_1: 'english_nat_1', national_1: 'english_nat_1', nat1: 'english_nat_1', n1: 'english_nat_1',
