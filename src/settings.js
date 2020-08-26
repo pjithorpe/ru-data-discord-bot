@@ -57,29 +57,30 @@ settings.competition_table_names = {
 settings.competition_aliases = {
     rwc_2019: 'rwc_2019', rugby_world_cup: 'rwc_2019', rwc: 'rwc_2019', wc: 'rwc_2019', world_cup: 'rwc_2019',
     '6_nations': '6_nations', '6_n': '6_nations', '6n': '6_nations', six_nations: '6_nations',
+    'women\'s_6_nations': 'women\'s_6_nations', '6_nations_womens': 'women\'s_6_nations', womens_6_n: 'women\'s_6_nations', womens6n: 'women\'s_6_nations', women_six_nations: 'women\'s_6_nations', 'women\'s6n': 'women\'s_6_nations', 'women\'s_six_nations': 'women\'s_6_nations',
     trc_2020: 'trc_2020', trc: 'trc_2020', the_rugby_championship: 'trc_2020',
     rugby_europe: 'rugby_europe', rec: 'rugby_europe',
     pacific_nations_cup: 'pacific_nations_cup', pnc: 'pacific_nations_cup',
-    u20_championship: 'u20_championship', u20: 'u20_championship', u20wc: 'u20_chamionship',
+    u20_championship: 'u20_championship', u20: 'u20_championship', u20wc: 'u20_chamionship', u20s_wc: 'u20_chamionship', u20swc: 'u20_chamionship', 'u20\'s_wc': 'u20_chamionship', 'u20\'s_championship': 'u20_chamionship',
     international_friendlies: 'international_friendlies', friendly: 'international_friendlies', international: 'international_friendlies',
 
     premiership_rugby: 'premiership_rugby', prem: 'premiership_rugby', premiership: 'premiership_rugby', english_prem: 'premiership_rugby', english_premiership: 'premiership_rugby', gallagher: 'premiership_rugby', proper_rugby: 'premiership_rugby',
     prem_rugby_cup: 'prem_rugby_cup', prc: 'prem_rugby_cup', prem_cup: 'prem_rugby_cup', premiership_rugby_cup: 'prem_rugby_cup', anglo_welsh: 'prem_rugby_cup', awc: 'prem_rugby_cup',
     championship: 'championship', english_championship: 'championship',
-    pro_14: 'pro_14', pro14: 'pro_14', p14: 'pro_14', guinness: 'pro_14', master_race: 'pro_14',
+    pro_14: 'pro_14', pro14: 'pro_14', p14: 'pro_14', guinness: 'pro_14', master_race: 'pro_14', p13: 'pro_14', pro13: 'pro_14', pro_13: 'pro_14', pro12: 'pro_14', p12: 'pro_14', pro_12: 'pro_14',
     top_14: 'top_14', top14: 'top_14', t14: 'top_14',
     pro_d2: 'pro_d2', prod2: 'pro_d2',
     mlr: 'mlr', major_league_rugby: 'mlr',
-    champions_cup: 'champions_cup', champions: 'champions_cup', europe: 'champions_cup', champs_cup: 'champions_cup',
+    champions_cup: 'champions_cup', champions: 'champions_cup', europe: 'champions_cup', champs_cup: 'champions_cup', championscup: 'champions_cup', champ_cup: 'champions_cup', champscup: 'champions_cup',
     challenge_cup: 'challenge_cup', challenge: 'challenge_cup',
 
     super_rugby: 'super_rugby', sr: 'super_rugby',
     nrc: 'nrc', national_rugby_championship: 'nrc',
-    mitre_10_cup: 'mitre_10_cup', mitre_10: 'mitre_10_cup', m10c: 'mitre_10_cup', m_10_c: 'mitre_10_cup',
+    mitre_10_cup: 'mitre_10_cup', mitre_10: 'mitre_10_cup', m10c: 'mitre_10_cup', m_10_c: 'mitre_10_cup', mitre10: 'mitre_10_cup',
     currie_cup: 'currie_cup', currie: 'currie_cup', cc: 'currie_cup',
     'premier_15\'s': 'premier_15\'s',
-    sr_aotearoa: 'sr_aotearoa', sr_nz: 'sr_aotearoa', givemesomedamnruggers:'sr_aotearoa', shrugbybestrugby:'sr_aotearoa',
-    sr_australia: 'sr_australia', sr_au: 'sr_australia', sr_folau: 'sr_australia',
+    sr_aotearoa: 'sr_aotearoa', sr_nz: 'sr_aotearoa', givemesomedamnruggers: 'sr_aotearoa', shrugbybestrugby: 'sr_aotearoa', super_rugby_nz: 'sr_aotearoa', sr_new_zealand: 'sr_aotearoa',
+    sr_australia: 'sr_australia', sr_au: 'sr_australia', sr_folau: 'sr_australia', super_rugby_au: 'sr_australia', super_rugby_aus: 'sr_australia', super_rugby_australia: 'sr_australia', sr_aus: 'sr_australia',
 
     //for competition tables (not checked UR name for these leagues)
     nat_1: 'english_nat_1', national_1: 'english_nat_1', nat1: 'english_nat_1', n1: 'english_nat_1',
@@ -151,24 +152,24 @@ settings.team_logos = {
 settings.team_aliases = {
 
     // England
-    bath: 'bath_rugby',
-    bristol: 'bristol_bears', bears: 'bristol_bears',
-    exeter: 'exeter_chiefs',
+    bath: 'bath_rugby', cunts: 'bath_rugby', barf: 'bath_rugby',
+    bristol: 'bristol_bears', bears: 'bristol_bears', bris: 'bristol_bears',
+    exeter: 'exeter_chiefs', exe: 'exeter_chiefs',
     quins: 'harlequins',
-    gloucester: 'gloucester_rugby',
+    gloucester: 'gloucester_rugby', glos: 'gloucester_rugby', glaws: 'gloucester_rugby',
     tigers: 'leicester_tigers', leicester: 'leicester_tigers',
-    irish: 'london_irish', london_australian: 'london_irish',
+    irish: 'london_irish', london_australian: 'london_irish', exiles: 'london_irish',
     sale: 'sale_sharks',
-    saints: 'northampton_saints',
+    saints: 'northampton_saints', northampton: 'northampton_saints',
     sarries: 'saracens', cheaters: 'saracens', cheats: 'saracens',
     worcester: 'worcester_warriors',
     falcons: 'newcastle_falcons', newcastle: 'newcastle_falcons',
-    yorkshire: 'yorkshire_carnegie',
-    pirates: 'cornish_pirates',
+    yorkshire: 'yorkshire_carnegie', carnegie: 'yorkshire_carnegie',
+    pirates: 'cornish_pirates', cornish: 'cornish_pirates',
     coventry: 'coventry_rugby',
     jersey: 'jersey_reds',
-    doncaster: 'doncaster_knights',
-    ealing: 'ealing_trailfinders',
+    doncaster: 'doncaster_knights', knights: 'doncaster_knights',
+    ealing: 'ealing_trailfinders', trailfinders: 'ealing_trailfinders',
     nottingham: 'nottingham_rugby',
     scottish: 'london_scottish',
     welsh: 'london_welsh',
@@ -192,8 +193,8 @@ settings.team_aliases = {
     ca_brive: 'brive', club_athletique_brive: 'brive',
 
     // Scotland
-    glasgow: 'glasgow_warriors',
-    edinburgh: 'edinburgh_rugby',
+    glasgow: 'glasgow_warriors', glesga: 'glasgow_warriors',
+    edinburgh: 'edinburgh_rugby', edi: 'edinburgh_rugby',
 
     // Ireland
     ulster: 'ulster_rugby',
@@ -202,9 +203,9 @@ settings.team_aliases = {
     connacht: 'connacht_rugby',
 
     // Wales
-    llanelli_scarlets: 'scarlets',
-    newport_gwent_dragons: 'dragons',
-    neath_swansea_ospreys: 'ospreys',
+    llanelli_scarlets: 'scarlets', llanelli: 'scarlets',
+    newport_gwent_dragons: 'dragons', newport: 'dragons',
+    neath_swansea_ospreys: 'ospreys', swansea: 'ospreys',
     cardiff: 'cardiff_blues',
 
     // Italy
@@ -213,11 +214,11 @@ settings.team_aliases = {
 
     // New Zealand
     canes: 'hurricanes',
-    saders: 'crusaders',
+    saders: 'crusaders', bad_guys: 'crusaders', baddies: 'crusaders',
 
     // South Africa
-    toyota_cheetahs: 'cheetahs',
-    kings: 'southern_kings',
+    toyota_cheetahs: 'cheetahs', bloemfontein: 'cheetahs',
+    kings: 'southern_kings', port_elizabeth: 'southern_kings',
 
     // Australia
     tahs: 'waratahs',
@@ -231,17 +232,17 @@ settings.team_aliases = {
     ire: 'ireland', éire: 'ireland', leinster_b: 'ireland',
     fra: 'france', les_bleus: 'france', la_france: 'france',
     sco: 'scotland', alba: 'scotland',
-    ita: 'italy', italia: 'italy',
+    ita: 'italy', italia: 'italy', azzurri: 'italy',
     nz: 'new_zealand', evil: 'new_zealand', abs: 'new_zealand', all_blacks: 'new_zealand', kiwis: 'new_zealand',
     sa: 'south_africa', za: 'south_africa', bokke: 'south_africa', springboks: 'south_africa',
-    aus: 'australia', wallabies: 'australia', convicts: 'australia',
-    arg: 'argentina', pumas: 'argentina', los_pumas: 'argentina',
-    jap: 'japan', brave_blossoms: 'japan',
+    aus: 'australia', wallabies: 'australia', convicts: 'australia', aussies: 'australia',
+    arg: 'argentina', pumas: 'argentina', los_pumas: 'argentina', argies: 'argentina',
+    jap: 'japan', brave_blossoms: 'japan', blossoms: 'japan',
     geo: 'georgia', lelos: 'georgia',
     fij: 'fiji', flying_fijians: 'fiji',
     sam: 'samoa', manu_samoa: 'samoa',
     ton: 'tonga', ikale_tahi: 'tonga', sea_eagles: 'tonga',
-    us: 'usa', united_states: 'usa', yanks: 'usa',
+    us: 'usa', united_states: 'usa', yanks: 'usa', america: 'usa',
     spa: 'spain',
     rom: 'romania', oaks: 'romania',
     uru: 'uruguay',
