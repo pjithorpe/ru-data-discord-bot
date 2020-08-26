@@ -17,17 +17,17 @@
   },
   "homepage": "https://github.com/pjithorpe/ru-data-discord-bot#readme",
   "dependencies": {
-    "discord.js": "^11.5.1",
-    "eslint": "^6.7.2",
-    "google-spreadsheet": "^2.0.8",
-    "moment": "^2.24.0",
+    "discord.js": "^11.6.4",
+    "eslint": "^6.8.0",
+    "google-spreadsheet": "^2.0.9",
+    "moment": "^2.27.0",
     "puppeteer": "^2.0.0",
-    "request": "^2.88.0"
+    "request": "^2.88.2"
   },
   "devDependencies": {
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
-    "mocha": "^6.2.2",
+    "mocha": "^6.2.3",
     "nyc": "^14.1.1"
   }
 }
