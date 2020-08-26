@@ -3,8 +3,6 @@ const settings = {};
 
 settings.admin_role = '@mods';
 
-settings.ignored_columns = ['url', '_xml', '_links', 'id', 'app', 'app:edited', 'edited', 'save', 'del'];
-
 settings.date_column_name = 'date';
 settings.time_column_name = 'time';
 settings.date_format = 'DD/MM/YYYY';

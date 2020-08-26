@@ -2,17 +2,17 @@ const settings = require('../settings');
 const Discord = require('discord.js');
 
 function formatMatch(dataObj) {
-    let message = '';
+    const embed = new Discord.RichEmbed()
+        .setColor('#0099ff')
+        .setTitle(dataObj['home'] + ' vs ' + dataObj['away'])
+        .addField('Kickoff', dataObj.date + ' ' + dataObj.time)
+        .addField('Location', dataObj.location)
+        .addField('Competition', dataObj.competition)
+        .setThumbnail(settings.team_logos[dataObj['home'].replace(/ /g, '_').toLowerCase()])
+        .setTimestamp();
 
-    Object.keys(dataObj).forEach((key) => {
-        // Ignore SpreadsheetRow object method/meta data fields
-        if(!settings.ignored_columns.includes(key)) {
-            message += '\n' + key[0].toUpperCase() + key.substring(1) + ': ' + dataObj[key];
-        }
-    });
-
-    console.log(message);
-    return message;
+    console.log(embed);
+    return embed;
 }
 
 function formatTeamsheet(dataArray, verbose) {
