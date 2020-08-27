@@ -51,7 +51,7 @@ settings.competition_table_names = {
     english_nat_2: 'english-national-league-two/table',
 };
 
-// Should include name as listed on Ultimate Rugby
+// Should include name as listed on Ultimate Rugby, followed by aliases which map to that same name
 settings.competition_aliases = {
     rwc_2019: 'rwc_2019', rugby_world_cup: 'rwc_2019', rwc: 'rwc_2019', wc: 'rwc_2019', world_cup: 'rwc_2019',
     '6_nations': '6_nations', '6_n': '6_nations', '6n': '6_nations', six_nations: '6_nations',
@@ -60,7 +60,7 @@ settings.competition_aliases = {
     rugby_europe: 'rugby_europe', rec: 'rugby_europe',
     pacific_nations_cup: 'pacific_nations_cup', pnc: 'pacific_nations_cup',
     u20_championship: 'u20_championship', u20: 'u20_championship', u20wc: 'u20_chamionship', u20s_wc: 'u20_chamionship', u20swc: 'u20_chamionship', 'u20\'s_wc': 'u20_chamionship', 'u20\'s_championship': 'u20_chamionship',
-    international_friendlies: 'international_friendlies', friendly: 'international_friendlies', international: 'international_friendlies',
+    international_friendlies: 'international_friendlies', friendly: 'international_friendlies', international: 'international_friendlies', internationals: 'international_friendlies',
 
     premiership_rugby: 'premiership_rugby', prem: 'premiership_rugby', premiership: 'premiership_rugby', english_prem: 'premiership_rugby', english_premiership: 'premiership_rugby', gallagher: 'premiership_rugby', proper_rugby: 'premiership_rugby',
     prem_rugby_cup: 'prem_rugby_cup', prc: 'prem_rugby_cup', prem_cup: 'prem_rugby_cup', premiership_rugby_cup: 'prem_rugby_cup', anglo_welsh: 'prem_rugby_cup', awc: 'prem_rugby_cup',
@@ -146,17 +146,17 @@ settings.team_logos = {
     wales: 'https://i.imgur.com/oE4BLXl.png',
 };
 
-// No need to include name as listed on Ultimate Rugby
+// No need to include name as listed on Ultimate Rugby, just any aliases that map to that name
 settings.team_aliases = {
 
     // England
     bath: 'bath_rugby', cunts: 'bath_rugby', barf: 'bath_rugby',
     bristol: 'bristol_bears', bears: 'bristol_bears', bris: 'bristol_bears',
     exeter: 'exeter_chiefs', exe: 'exeter_chiefs',
-    quins: 'harlequins',
-    gloucester: 'gloucester_rugby', glos: 'gloucester_rugby', glaws: 'gloucester_rugby',
+    quins: 'harlequins', hq: 'harlequins',
+    gloucester: 'gloucester_rugby', glos: 'gloucester_rugby', glaws: 'gloucester_rugby', our_year: 'gloucester_rugby',
     tigers: 'leicester_tigers', leicester: 'leicester_tigers',
-    irish: 'london_irish', london_australian: 'london_irish', exiles: 'london_irish',
+    irish: 'london_irish', london_australian: 'london_irish', exiles: 'london_irish', bath_b: 'london_irish', bath_a: 'london_irish',
     sale: 'sale_sharks',
     saints: 'northampton_saints', northampton: 'northampton_saints',
     sarries: 'saracens', cheaters: 'saracens', cheats: 'saracens',
@@ -201,10 +201,10 @@ settings.team_aliases = {
     connacht: 'connacht_rugby',
 
     // Wales
-    llanelli_scarlets: 'scarlets', llanelli: 'scarlets',
+    llanelli_scarlets: 'scarlets', llanelli: 'scarlets', the_good_welsh_team: 'scarlets',
     newport_gwent_dragons: 'dragons', newport: 'dragons',
     neath_swansea_ospreys: 'ospreys', swansea: 'ospreys',
-    cardiff: 'cardiff_blues',
+    cardiff: 'cardiff_blues', diff: 'cardiff_blues', the_diff: 'cardiff_blues',
 
     // Italy
     treviso: 'benetton_rugby', benetton: 'benetton_rugby', benetton_treviso: 'benetton_rugby',
@@ -212,7 +212,7 @@ settings.team_aliases = {
 
     // New Zealand
     canes: 'hurricanes',
-    saders: 'crusaders', bad_guys: 'crusaders', baddies: 'crusaders',
+    saders: 'crusaders',
 
     // South Africa
     toyota_cheetahs: 'cheetahs', bloemfontein: 'cheetahs',
@@ -225,13 +225,13 @@ settings.team_aliases = {
     jags: 'jaguares',
 
     // International
-    eng: 'england', good: 'england',
+    eng: 'england', good: 'england', good_guys: 'england',
     wal: 'wales', cymru: 'wales',
-    ire: 'ireland', éire: 'ireland', leinster_b: 'ireland',
-    fra: 'france', les_bleus: 'france', la_france: 'france',
+    ire: 'ireland', éire: 'ireland', leinster_b: 'ireland', leinster_a: 'ireland',
+    fra: 'france', les_bleus: 'france', la_france: 'france', frenchies: 'france',
     sco: 'scotland', alba: 'scotland',
     ita: 'italy', italia: 'italy', azzurri: 'italy',
-    nz: 'new_zealand', evil: 'new_zealand', abs: 'new_zealand', all_blacks: 'new_zealand', kiwis: 'new_zealand',
+    nz: 'new_zealand', evil: 'new_zealand', abs: 'new_zealand', all_blacks: 'new_zealand', kiwis: 'new_zealand', bad_guys: 'new_zealand', baddies: 'new_zealand',
     sa: 'south_africa', za: 'south_africa', bokke: 'south_africa', springboks: 'south_africa',
     aus: 'australia', wallabies: 'australia', convicts: 'australia', aussies: 'australia',
     arg: 'argentina', pumas: 'argentina', los_pumas: 'argentina', argies: 'argentina',
@@ -260,5 +260,27 @@ settings.team_aliases = {
     ken: 'kenya',
     col: 'colombia',
 };
+
+// Add no-space versions of all aliases with underscores
+// Issue: if a team has no aliases, and has a multi-word name, it won't get picked up in this setup algorithm, and users won't be able to use the no-space version of its name.
+const teamKeys = Object.keys(settings.team_aliases);
+const ultimateRugbyNames = [];
+for (let i = 0; i < teamKeys.length; i++) {
+    const alias = teamKeys[i];
+    const target = settings.team_aliases[alias];
+    settings.team_aliases[alias.replace(/_/g, '')] = target;
+
+    if (!ultimateRugbyNames.includes(target)) ultimateRugbyNames.push(target);
+}
+for (let i = 0; i < ultimateRugbyNames.length; i++) {
+    const alias = ultimateRugbyNames[i];
+    settings.team_aliases[alias.replace(/_/g, '')] = alias;
+}
+
+const compKeys = Object.keys(settings.competition_aliases);
+for (let i = 0; i < compKeys.length; i++) {
+    const alias = compKeys[i];
+    settings.competition_aliases[alias.replace(/_/g, '')] = settings.competition_aliases[alias];
+}
 
 module.exports = settings;
