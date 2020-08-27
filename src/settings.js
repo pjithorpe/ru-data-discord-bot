@@ -122,7 +122,7 @@ settings.team_logos = {
     zebre_rugby: 'https://i.imgur.com/Mi1SoTy.png',
 
     // Top 14
-    clermont_auvergne: 'https://i.imgur.com/bf2BGj8.png',
+    clermont_auvergne: 'https://i.imgur.com/IBZ4W1k.png',
     lyon: 'https://i.imgur.com/Ys6jEh1.png',
     montpellier: 'https://i.imgur.com/E2O1oJS.png',
     la_rochelle: 'https://i.imgur.com/njKyUA1.png',
