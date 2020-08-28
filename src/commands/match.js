@@ -26,7 +26,7 @@ module.exports = {
                         console.log(arg);
 
                         // We first check if the arg is a known competition
-                        if(arg in settings.competition_aliases) {
+                        if (arg in settings.competition_aliases) {
                             arg = settings.competition_aliases[arg];
                             arg = arg.replace(/_/g, ' ');
                             rows = result.filter(r => r.competition.toLowerCase().trim() === arg);
@@ -45,15 +45,15 @@ module.exports = {
 
                     let resultRow = null;
                     // Get first date that is in the future
-                    for(let i = 0; i < rows.length && resultRow == null; i++) {
-                        if(dates.isFutureMoment(dates.parseDateAndTime(rows[i].date, rows[i].time))) {
+                    for (let i = 0; i < rows.length && resultRow == null; i++) {
+                        if (dates.isFutureMoment(dates.parseDateAndTime(rows[i].date, rows[i].time))) {
                             resultRow = rows[i];
                         }
                     }
 
-                    if(!resultRow && args.length) return message.reply('No match found for team/competition \'' + arg + '\'.');
+                    if (!resultRow && args.length) return message.reply('No match found for team/competition \'' + arg + '\'.');
 
-                    if(!resultRow) return message.reply('No matches found!');
+                    if (!resultRow) return message.reply('No matches found!');
 
                     return message.reply(messageBuilder.formatMatch(resultRow));
                 },

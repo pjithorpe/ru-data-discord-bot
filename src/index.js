@@ -46,7 +46,7 @@ function handleMessage(message) {
     if (!command || !command.enabled) return;
 
     // Check for missing args
-    if(command.args && !args.length) {
+    if (command.args && !args.length) {
         let reply = 'You didn\'t provide any arguments, ' + message.author + '.';
 
         if (command.usage) {

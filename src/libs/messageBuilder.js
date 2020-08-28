@@ -15,6 +15,22 @@ function formatMatch(dataObj) {
     return embed;
 }
 
+function formatPlayer(firstname, lastname, imageURL, dob, height, weight, teams, positions) {
+    const embed = new Discord.RichEmbed()
+        .setColor('#0099ff')
+        .setTitle(firstname + ' ' + lastname)
+        .addField('Teams', teams.slice(0, 2).reduce((output, team) => output += ', ' + team))
+        .addField('Positions', positions.reduce((output, pos) => output += ', ' + pos))
+        .addField('Born', dob)
+        .addField('Height', height)
+        .addField('Weight', weight)
+        .setThumbnail(imageURL)
+        .setTimestamp();
+
+    console.log(embed);
+    return embed;
+}
+
 function formatTeamsheet(dataArray, verbose) {
 
     dataArray = dataArray.map(p => p.trim().replace(/\n|\t/g, ''));
@@ -66,5 +82,6 @@ function formatTeamsheet(dataArray, verbose) {
 
 module.exports = {
     formatMatch,
+    formatPlayer,
     formatTeamsheet,
 };

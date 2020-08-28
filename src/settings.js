@@ -11,6 +11,26 @@ settings.time_format = 'HH:mm';
 settings.table_padding = 0;
 settings.tables_url = 'https://www.bbc.co.uk/sport/rugby-union/';
 
+settings.players_url = 'https://www.ultimaterugby.com/';
+
+settings.positions = [
+    'Tighthead Prop',
+    'Loosehead Prop',
+    'Hooker',
+    'No 4 Lock',
+    'No 5 Lock',
+    'Blindside Flanker',
+    'Openside Flanker',
+    'No. 8',
+    'Scrum Half',
+    'Fly Half',
+    'Inside Centre',
+    'Outside Centre',
+    'Left Wing',
+    'Right Wing',
+    'Fullback',
+];
+
 /*******************
     COMPETITIONS
 *******************/
