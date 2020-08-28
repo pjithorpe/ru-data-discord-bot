@@ -6,6 +6,7 @@ const Discord = require('discord.js');
 const puppeteer = require('puppeteer');
 const settings = require('../settings');
 const messageBuilder = require('../libs/messageBuilder');
+const { isNullOrUndefined } = require('util');
 
 
 module.exports = {
@@ -46,19 +47,29 @@ module.exports = {
                 return page.goto(url, { waitUntil: 'load', timeout: 0 }).then(() => {
                     // eslint-disable-next-line no-undef
                     return page.evaluate(() => document.body.innerHTML).then(body => {
+                        // if we've been redirected to the homepage, give up
+                        if (page.url() == settings.players_url) return message.reply('Player: \'' + firstname + ' ' + lastname + '\' not found.');
 
                         // regex searches
                         let regex = new RegExp('images/entities/[a-z0-9\-]*/' + name + 'rugbyplayer.jpg');
-                        const imgURL = settings.players_url + body.match(regex)[0].trim();
+                        let match = body.match(regex);
+                        let imgURL = null;
+                        if (!isNullOrUndefined(match) && match.length > 0) imgURL = settings.players_url + match[0].trim();
 
                         regex = new RegExp('<span>[0-9]{1,2}(st|nd|rd|th)\\s*[A-Z][a-z]{2}\\s*(19|20)[0-9]{2}</span>');
-                        const dob = body.match(regex)[0].replace(/<\/?span>/g, '');
+                        match = body.match(regex);
+                        let dob = null;
+                        if (!isNullOrUndefined(match) && match.length > 0) dob = match[0].replace(/<\/?span>/g, '');
 
                         regex = new RegExp('[0-9].[0-9]{2}m');
-                        const height = body.match(regex)[0];
+                        match = body.match(regex);
+                        let height = null;
+                        if (!isNullOrUndefined(match) && match.length > 0) height = match[0];
 
                         regex = new RegExp('[0-9]{2,3}kg');
-                        const weight = body.match(regex)[0];
+                        match = body.match(regex);
+                        let weight = null;
+                        if (!isNullOrUndefined(match) && match.length > 0) weight = match[0];
 
                         const positions = [];
                         settings.positions.forEach(pos => {

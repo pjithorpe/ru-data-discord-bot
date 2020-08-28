@@ -19,13 +19,14 @@ function formatPlayer(firstname, lastname, imageURL, dob, height, weight, teams,
     const embed = new Discord.RichEmbed()
         .setColor('#0099ff')
         .setTitle(firstname + ' ' + lastname)
-        .addField('Teams', teams.slice(0, 2).reduce((output, team) => output += ', ' + team))
-        .addField('Positions', positions.reduce((output, pos) => output += ', ' + pos))
-        .addField('Born', dob)
-        .addField('Height', height)
-        .addField('Weight', weight)
         .setThumbnail(imageURL)
         .setTimestamp();
+
+    if (teams != null && teams.length > 0) embed.addField('Teams', teams.slice(0, 2).reduce((output, team) => output += ', ' + team));
+    if (positions != null && positions.length > 0) embed.addField('Positions', positions.reduce((output, pos) => output += ', ' + pos));
+    if (dob != null && dob.length > 0) embed.addField('Born', dob);
+    if (height != null && height.length > 0) embed.addField('Height', height);
+    if (weight != null && weight.length > 0) embed.addField('Weight', weight);
 
     console.log(embed);
     return embed;
@@ -76,6 +77,8 @@ function formatTeamsheet(dataArray, verbose) {
             .addField('Outside backs', '11.' + dataArray[10] + ' 15. ' + dataArray[14] + ' 14. ' + dataArray[13])
             .addField('Replacements', '16. ' + dataArray[15] + ' 17. ' + dataArray[16] + ' 18. ' + dataArray[17] + ' 19. ' + dataArray[18] + ' 20. ' + dataArray[19] + ' 21. ' + dataArray[20] + ' 22. ' + dataArray[21] + ' 23. ' + dataArray[22])
             .setTimestamp();
+
+        console.log(embed);
         return embed;
     }
 }
