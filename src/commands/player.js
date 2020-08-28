@@ -23,8 +23,19 @@ module.exports = {
 
         const firstLower = args[0].toLowerCase();
         const lastLower = args[1].toLowerCase();
-        const firstname = firstLower[0].toUpperCase() + firstLower.substring(1);
-        const lastname = lastLower[0].toUpperCase() + lastLower.substring(1);
+        let firstname = firstLower[0].toUpperCase() + firstLower.substring(1);
+        let lastname = lastLower[0].toUpperCase() + lastLower.substring(1);
+
+        // Solve double barrelled names
+        if (firstname.includes('-')) {
+            const dashPos = firstname.indexOf('-');
+            firstname = firstname.substring(0, dashPos + 1) + firstname[dashPos + 1].toUpperCase() + firstname.substring(dashPos + 2);
+        }
+        if (lastname.includes('-')) {
+            const dashPos = lastname.indexOf('-');
+            lastname = lastname.substring(0, dashPos + 1) + lastname[dashPos + 1].toUpperCase() + lastname.substring(dashPos + 2);
+        }
+
         const name = firstname + lastname;
 
         const url = settings.players_url + firstLower + '-' + lastLower;
@@ -40,7 +51,7 @@ module.exports = {
                         let regex = new RegExp('images/entities/[a-z0-9\-]*/' + name + 'rugbyplayer.jpg');
                         const imgURL = settings.players_url + body.match(regex)[0].trim();
 
-                        regex = new RegExp('<span>[0-9]{1,2}(st|rd|th)\\s*[A-Z][a-z]{2}\\s*(19|20)[0-9]{2}</span>');
+                        regex = new RegExp('<span>[0-9]{1,2}(st|nd|rd|th)\\s*[A-Z][a-z]{2}\\s*(19|20)[0-9]{2}</span>');
                         const dob = body.match(regex)[0].replace(/<\/?span>/g, '');
 
                         regex = new RegExp('[0-9].[0-9]{2}m');
