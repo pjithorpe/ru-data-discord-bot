@@ -2,15 +2,24 @@ const settings = require('../settings');
 const Discord = require('discord.js');
 
 function formatMatch(dataObj) {
+    let titleHome, titleAway = '??';
+    if (dataObj.home != null && dataObj.home.trim().length > 0) titleHome = dataObj.home;
+    if (dataObj.away != null && dataObj.away.trim().length > 0) titleAway = dataObj.away;
     const embed = new Discord.RichEmbed()
         .setColor('#0099ff')
-        .setTitle(dataObj['home'] + ' vs ' + dataObj['away'])
-        .addField('Kickoff', dataObj.date + ' ' + dataObj.time)
-        .addField('Location', dataObj.location)
-        .addField('Competition', dataObj.competition)
+        .setTitle(titleHome + ' vs ' + titleAway)
         .setThumbnail(settings.team_logos[dataObj['home'].replace(/ /g, '_').toLowerCase()])
         .setTimestamp();
-
+    
+    let fieldDate, fieldTime, fieldLoc, fieldComp = '??';
+    if (dataObj.date != null && dataObj.date.trim().length > 0) fieldDate = dataObj.date;
+    if (dataObj.time != null && dataObj.time.trim().length > 0) fieldTime = dataObj.time;
+    if (dataObj.location != null && dataObj.location.trim().length > 0) fieldLoc = dataObj.location;
+    if (dataObj.competition != null && dataObj.competition.trim().length > 0) fieldComp = dataObj.competition;
+    embed.addField('Kickoff', fieldDate + ' ' + fieldTime);
+    embed.addField('Location', fieldLoc);
+    embed.addField('Competition', fieldComp);
+    
     console.log(embed);
     return embed;
 }
@@ -22,11 +31,11 @@ function formatPlayer(firstname, lastname, imageURL, dob, height, weight, teams,
         .setThumbnail(imageURL)
         .setTimestamp();
 
-    if (teams != null && teams.length > 0) embed.addField('Teams', teams.slice(0, 2).reduce((output, team) => output += ', ' + team));
-    if (positions != null && positions.length > 0) embed.addField('Positions', positions.reduce((output, pos) => output += ', ' + pos));
-    if (dob != null && dob.length > 0) embed.addField('Born', dob);
-    if (height != null && height.length > 0) embed.addField('Height', height);
-    if (weight != null && weight.length > 0) embed.addField('Weight', weight);
+    if (teams != null && teams.trim().length > 0) embed.addField('Teams', teams.slice(0, 2).reduce((output, team) => output += ', ' + team));
+    if (positions != null && positions.trim().length > 0) embed.addField('Positions', positions.reduce((output, pos) => output += ', ' + pos));
+    if (dob != null && dob.trim().length > 0) embed.addField('Born', dob);
+    if (height != null && height.trim().length > 0) embed.addField('Height', height);
+    if (weight != null && weight.trim().length > 0) embed.addField('Weight', weight);
 
     console.log(embed);
     return embed;
