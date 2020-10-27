@@ -62,7 +62,8 @@ module.exports = {
                         const idClass = match.substring(14, match.length - 1);
 
                         // select the table using the react component id
-                        const dataReactID = idClass + '.2.0.0.0.0.$' + groupIndex.toString();
+                        const dataReactID = idClass + '.1.0.0.1.0.$' + groupIndex.toString();
+                        console.log(dataReactID);
 
                         return page.$('[data-reactid=\'' + dataReactID + '\']').then(element => {
                             return element.boundingBox().then(box => {
