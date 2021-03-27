@@ -31,8 +31,8 @@ function formatPlayer(firstname, lastname, imageURL, dob, height, weight, teams,
         .setThumbnail(imageURL)
         .setTimestamp();
 
-    if (teams != null && teams.trim().length > 0) embed.addField('Teams', teams.slice(0, 2).reduce((output, team) => output += ', ' + team));
-    if (positions != null && positions.trim().length > 0) embed.addField('Positions', positions.reduce((output, pos) => output += ', ' + pos));
+    if (teams != null && teams.length > 0) embed.addField('Teams', teams.slice(0, 2).reduce((output, team) => output += ', ' + team));
+    if (positions != null && positions.length > 0) embed.addField('Positions', positions.reduce((output, pos) => output += ', ' + pos));
     if (dob != null && dob.trim().length > 0) embed.addField('Born', dob);
     if (height != null && height.trim().length > 0) embed.addField('Height', height);
     if (weight != null && weight.trim().length > 0) embed.addField('Weight', weight);

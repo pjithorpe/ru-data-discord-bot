@@ -245,7 +245,7 @@ settings.team_aliases = {
     jags: 'jaguares',
 
     // International
-    eng: 'england', good: 'england', good_guys: 'england',
+    eng: 'england', good: 'england', good_guys: 'england', englamd: 'england',
     wal: 'wales', cymru: 'wales',
     ire: 'ireland', éire: 'ireland', leinster_b: 'ireland', leinster_a: 'ireland',
     fra: 'france', les_bleus: 'france', la_france: 'france', frenchies: 'france',
