@@ -1,3 +1,4 @@
+const settings = require('../settings');
 const cp = require('child_process');
 
 module.exports = {
@@ -9,6 +10,11 @@ module.exports = {
     enabled: true,
     // eslint-disable-next-line no-unused-vars
     execute(message, args) {
+        // If not a mod, exit
+        if (message.member == null || !message.member.roles.size || !message.member.roles.some(r => r.name === settings.admin_role)) {
+            return message.reply('You don\'t have the permission to use that command.');
+        }
+
         // start up a new bot
         return message.reply('Launching new client process...')
             .then(() => {
