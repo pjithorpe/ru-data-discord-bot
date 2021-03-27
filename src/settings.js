@@ -1,7 +1,7 @@
 ﻿/* eslint-disable spaced-comment */
 const settings = {};
 
-settings.admin_role = '@mods';
+settings.admin_role = '381072139643781120';
 
 settings.date_column_name = 'date';
 settings.time_column_name = 'time';
